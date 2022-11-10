@@ -1,0 +1,286 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            width: 210mm;
+            height: 297mm;
+        }
+
+        body {
+            width: 210mm;
+            height: 297mm;
+        }
+
+        /*210 x 297 mm	8.3 x 11.7 inches*/
+
+        @page {
+            margin: 0;
+            size: A4 portrait;
+        }
+
+        .pogPage {
+            width: 194mm;
+            height: 281mm;
+            margin: 8mm;
+            background: white;
+            font-family: Calibri, sans-serif;
+        }
+
+        .pogContentWrapper {
+            height: 94%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: stretch;
+        }
+
+        .pogRuler {
+            width: 10%;
+            margin: 5mm 0;
+            /*height: 600px;*/
+            /*bottom:200px;*/
+            /*left:200px;*/
+            /*position: absolute;*/
+            background: url("classpath:static/images/ruller_vertical.png") no-repeat;
+
+            background-size: auto 100%;
+            background-position-x: left;
+            z-index: 300;
+        }
+
+        .pogContainer {
+            width: 90%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .pogContent {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            border-left: 0.5mm solid black;
+            border-right: 0.5mm solid black;
+            border-bottom: none;
+        }
+
+        .pogFixture {
+            position: absolute;
+            /*background: black;*/
+        }
+
+        .pogFixture .grilleWrapper {
+            position: absolute;
+            display: flex;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .pogFixture .grilleWrapper .grille {
+            width: 10%;
+            height: 100%;
+            border-left: 0.40mm solid black;
+            border-top: 0.40mm solid black;
+            border-bottom: 0.40mm solid black;
+            z-index: 80;
+            transform: rotate(0deg);
+        }
+
+        .pogFixture .grille:last-of-type {
+            border-right: 0.40mm solid black;
+        }
+
+        .pogFixtureDescrWrapper {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pogFixtureDescr {
+            padding: 0 2mm;
+            background: white;
+            color: black;
+            border: 0.25mm solid black;
+            font-size: 2.4mm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transform: rotate(0deg);
+            line-height: 90%;
+        }
+
+        .pogFacingGroup {
+            position: absolute;
+            background: white;
+            border: 0.2mm solid #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .skuNumberWrapper {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 0.4mm solid #666;
+        }
+
+        .skuNumberWrapper .skuNumber {
+            background: white;
+            line-height: 90%;
+            z-index: 60;
+        }
+
+        .pogLeadIn {
+            position: absolute;
+            font-size: 4mm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .leadSegment {
+            position: absolute;
+            bottom: 2mm;
+            font-size: 4mm;
+            width: 100%;
+            text-align: center;
+        }
+
+        .horizontalRuller {
+            position: absolute;
+            width: 100%;
+            height: 6mm;
+            bottom: -6mm;
+            background: url("classpath:static/images/ruller_horizontal.png") no-repeat center;
+            background-size: 100% auto;
+        }
+
+        .pogPageFooter {
+            height: 6%;
+            padding: 3mm 3mm 0;
+            display: flex;
+            align-items: stretch;
+            font-size: 5mm;
+            font-weight: bold;
+        }
+
+        .pogPageFooter .product {
+            width: 60mm;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            font-style: italic;
+        }
+
+        .pogPageFooter .segment {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+        }
+
+        .pogPageFooter .date {
+            width: 60mm;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body th:with="segmentHTMLModel = ${templateModel}">
+
+<div class="pogPage" th:with="segmentHTMLModel = ${segmentHTMLModel},
+                segmentElements = ${segmentHTMLModel.getSegmentElements()},
+                segmentDimensions = ${segmentHTMLModel.getSegmentDimensions()},
+                pageNum = ${segmentDimensions.getId()},
+                scale = ${segmentDimensions.getScale()}">
+
+    <!--/*@thymesVar id="segmentHTMLModel" type="com.cantire.tetris.pogsetupguide.dto.model.SegmentHtmlModel"*/-->
+    <!--/*@thymesVar id="segmentElements" type="com.cantire.tetris.pogsetupguide.dto.model.segment.SingleSegmentHtmlElements"*/-->
+    <!--/*@thymesVar id="segmentDimensions" type="com.cantire.tetris.pogsetupguide.dto.model.segment.SegmentDimensions"*/-->
+
+    <div class="pogContentWrapper">
+        <div class="pogRuler" th:style="'height: '+${scale*(108)}+'in;'"></div>
+
+        <div class="pogContainer">
+            <div class="pogContent"
+                 th:style="${segmentDimensions.getContainerStyles()}">
+
+                <div class="pogFacingGroup" th:each="facingGroup : ${segmentElements.getFacings()}"
+                     th:style="${facingGroup.getStyles()}">
+                </div>
+
+                <div class="skuNumberWrapper" th:each="skuNumber : ${segmentElements.getSkuNumbers()}"
+                     th:style="${skuNumber.getStyles()}">
+                    <div class="skuNumber" th:each="skuNumberChild : ${skuNumber.getChildren()}"
+                         th:style="${skuNumberChild.getStyles()}"
+                         th:text="${skuNumberChild.getLabel()}"></div>
+                </div>
+
+
+                <div class="pogLeadIn" th:each="leadIn : ${segmentElements.getLeadIns()}"
+                     th:style="${leadIn.getStyles()}" th:text="${leadIn.getLabel()}">
+                </div>
+
+                <div class="pogFixture" th:each="fixture : ${segmentElements.getFixtures()}"
+                     th:style="${fixture.getStyles()}">
+
+                    <div class="grilleWrapper" th:each="fixtureChild: ${fixture.getChildren()}"
+                         th:style="${fixtureChild.getStyles()}">
+                        <div class="grille"></div>
+                        <div class="grille"></div>
+                        <div class="grille"></div>
+                        <div class="grille"></div>
+                        <div class="grille"></div>
+                        <div class="grille"></div>
+                        <div class="grille"></div>
+                        <div class="grille"></div>
+                        <div class="grille"></div>
+                        <div class="grille"></div>
+                    </div>
+
+                    <div class="pogFixtureDescrWrapper">
+                        <div>
+                            <div class="pogFixtureDescr" th:text="${fixture.getLabel()}"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--                <div class="leadSegment" th:if="${pageNum==1}">-->
+                <!--                    LEAD IN-->
+                <!--                </div>-->
+
+                <div class="horizontalRuller">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pogPageFooter">
+        <div class="product" th:text="${segmentHTMLModel.getPogId()}+' '+${segmentHTMLModel.getPogName()}"></div>
+        <div class="segment"
+             th:text="'Segment: '+${pageNum}+' of '+${segmentDimensions.getSegmentsNumber()}"></div>
+        <div class="date" th:text="${segmentHTMLModel.getDate()}"></div>
+    </div>
+</div>
+
+</body>
+</html>

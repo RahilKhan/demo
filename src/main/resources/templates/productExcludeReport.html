@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<style>
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+@page {
+	margin: 0;
+	size: A4 portrait;
+}
+
+/*--------BEGIN : Table CSS--------*/
+.productTable {
+	width: 100%;
+	height: 85%;
+	font-family: Calibri;
+	padding: 0.5mm
+}
+
+table, th, td {
+	margin: 0 auto;
+	border: 0.1mm solid black;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+table {
+	width: 90%
+}
+
+th {
+	font-size: 11px;
+	font-weight: bold;
+}
+
+td {
+	font-size: 10px;
+}
+/*--------END   : Table CSS--------*/
+
+/*--------BEGIN : v2-Style---------*/
+#v2ReportPageDiv {
+	font-family: Calibri, sans-serif;
+}
+
+#v2HeaderDiv {
+	height: 10%;
+	width: 100%;
+	margin-top: 30px;
+	margin-left: 20px;
+	display: flex;
+	font-style: italic;
+	font-weight: bold;
+	text-transform: capitalize;
+}
+
+.v2HeaderDivMargin {
+	margin-top: 10px;
+}
+
+#v2LogoDiv {
+	width: 15%;
+}
+
+#v2LogoDiv img {
+	width: 100%;
+}
+
+#v2NameHeaderDiv {
+	width: 70%;
+	font-size: 5mm;
+	font-weight: bold;
+}
+
+#v2PogIdDiv {
+	width: 15%;
+}
+/*--------END   : v2-Style---------*/
+</style>
+</head>
+
+<body th:with="reportHTMLModel = ${templateModel}">
+
+	<div id="v2ReportPageDiv">
+		<div id="v2HeaderDiv">
+			<div id="v2LogoDiv">
+				<img src="classpath:static/images/tetris_logo.png" />
+			</div>
+			<div id="v2NameHeaderDiv">
+				<table style="border: 1px;">
+					<tr>
+						<th
+							style="font-family: Calibri; font-style: italic; font-weight: bold; font-size: 15px; border: 0px;"
+							th:text="${reportHTMLModel.getPogName()}"></th>
+					</tr>
+					<tr>
+						<th
+							style="font-family: Calibri; font-style: italic; font-weight: bold; font-size: 15px; border: 0px;"
+							th:text="${reportHTMLModel.getPogNameFr()}"></th>
+					</tr>
+				</table>
+			</div>
+			<div id="v2PogIdDiv"
+				th:text="${reportHTMLModel.getPogId()}+'-'+${reportHTMLModel.getSide()}">
+			</div>
+		</div>
+		<!-- END : v2headerDiv -->
+
+		<div id="v2headerDiv" class="v2HeaderDivMargin">
+			<table style="border: 1px;">
+				<tr>
+					<th
+						style="font-family: Calibri; font-style: italic; font-weight: bold; font-size: 15px; border: 0px;"
+						th:text="${reportHTMLModel.getSubHeading()}"></th>
+				</tr>
+			</table>
+		</div>
+		<!-- END : v2headerDiv -->
+
+		<div id="v2ProductTableDiv" class="productTable">
+			<table>
+				<tr>
+					<th>SKU#/NO D’ART.</th>
+					<th>Description/Désignation</th>
+					<th>SC/Code d’état</th>
+					<th>Date</th>
+					<th>Reason/Raison</th>
+					<th>Promo/Prix-réclame</th>
+				</tr>
+				<tr th:each="reportModel : ${reportHTMLModel.getReportList()}">
+					<td th:text="${reportModel.getSku()}"></td>
+					<td style="text-align: left" th:text="${reportModel.getDescription()}"></td>
+					<td th:text="${reportModel.getSc()}"></td>
+					<td th:text="${reportModel.getDate()}"></td>
+					<td th:text="${reportModel.getReason()}"></td>
+					<td th:text="${reportModel.getPromo()}"></td>
+				</tr>
+			</table>
+		</div>
+		<!-- END : v2ProductTableDiv -->
+	</div>
+	<!-- END : v2ReportPageDiv -->
+
+</body>
+</html>

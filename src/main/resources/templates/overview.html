@@ -1,0 +1,370 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            width: 297mm;
+            height: 210mm;
+        }
+
+        body {
+            width: 297mm;
+            height: 210mm;
+        }
+
+        /*A4    210 x 297 mm	8.3 x 11.7 inches*/
+
+        @page {
+            margin: 0;
+            size: A4 landscape;
+        }
+
+        .overviewPage {
+            width: 281mm;
+            height: 194mm;
+            margin: 8mm;
+            background: white;
+            font-family: Calibri, sans-serif;
+        }
+
+        .overviewPageHeader {
+            padding: 0 3mm;
+            display: flex;
+            align-items: stretch;
+            font-size: 5mm;
+            font-weight: bold;
+            height: 4%;
+            text-transform: capitalize;
+        }
+
+        .overviewPageHeader .logo {
+            width: 30mm;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .overviewPageHeader .logo img {
+            width: 100%;
+        }
+
+        .overviewPageHeader .name {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+        }
+
+        .overviewPageHeader .id {
+            width: 30mm;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-style: italic;
+        }
+
+        .overviewContentWrapper {
+            display: flex;
+            align-items: flex-end;
+            height: 96%;
+            width: 100%;
+        }
+
+        .overviewContent {
+            width: 100%;
+        }
+
+        .pogContainer {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .pogContent {
+            position: relative;
+        }
+
+        .pogSegmentBorder {
+            position: absolute;
+            background-color: #666;
+            /*border-left: solid #666 1mm;*/
+            /*border-right: solid #666 1mm;*/
+            z-index: 20;
+        }
+
+        .pogSegmentBorderDashed {
+            position: absolute;
+            border-left: dotted #666 1mm;
+            /*border-right: dashed #666 1mm;*/
+            z-index: 100;
+        }
+
+        .pogFixture {
+            position: absolute;
+            z-index: 70;
+            /*background: black;*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pogFixture .grilleWrapper {
+            position: absolute;
+            display: flex;
+            align-items: flex-start;
+            width: 100%;
+            z-index: 80;
+        }
+
+        .pogFixture .grilleWrapper .grille {
+            width: 10%;
+            height: 100%;
+            border-left: 0.30mm solid black;
+            border-top: 0.30mm solid black;
+            border-bottom: 0.30mm solid black;
+            z-index: 85;
+        }
+
+        .pogFixture .grille:last-of-type {
+            border-right: 0.30mm solid black;
+        }
+
+        /*.pogFixture {*/
+        /*    position: absolute;*/
+        /*    z-index: 70;*/
+        /*    display: flex;*/
+        /*    align-items: flex-start;*/
+        /*    border-bottom: 1px solid black;*/
+        /*}*/
+
+        /*.pogFixture .grille {*/
+        /*    width: 10%;*/
+        /*    height: 100%;*/
+        /*    border-left: 1px solid black;*/
+        /*    border-top: 1px solid black;*/
+        /*}*/
+
+        /*.pogFixture .grille:last-of-type {*/
+        /*    border-right: 1px solid black;*/
+        /*}*/
+
+        .pogFacingGroup {
+            position: absolute;
+            /*border: 1px solid #888;*/
+            z-index: 60;
+            /*background-size: contain;*/
+            /*background-repeat: no-repeat;*/
+            /*background-position: center;*/
+        }
+
+        .topMessage {
+            display: flex;
+            padding: 0 2mm;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            text-align: center;
+            z-index: 80;
+        }
+
+        .leadSegment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            z-index: 80;
+        }
+
+        .pogLeadIn {
+            position: absolute;
+            font-size: 4mm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .overviewTable {
+            border: 0.4mm solid black;
+            margin-top: 2mm;
+        }
+
+        .overviewTable .heading {
+            font-size: 5mm;
+            font-weight: bold;
+            padding: 1mm 3mm;
+        }
+
+        .overviewTable .alert {
+            font-size: 3mm;
+            border-top: 0.4mm solid black;
+            padding: 1mm 3mm;
+        }
+
+        .overviewTable .merch {
+            /*height: 30mm;*/
+            /*font-size: 4mm;*/
+            white-space: pre-line;
+            border-top: 0.4mm solid black;
+            padding: 1mm 3mm;
+        }
+
+        .overviewTable .footer {
+            padding: 1mm 3mm;
+            display: flex;
+            align-items: stretch;
+            font-size: 4mm;
+            border-top: 0.4mm solid black;
+        }
+
+        .overviewTable .footer .footerHeader {
+            font-weight: bold;
+            margin-right: 1mm;
+            font-style: italic;
+        }
+
+        .overviewTable .footer .email {
+            width: 80mm;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            font-style: italic;
+        }
+
+        .overviewTable .footer .deal {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+        }
+
+        .overviewTable .footer .date {
+            width: 80mm;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body th:with="overviewHTMLModel = ${templateModel}">
+
+<!--/*@thymesVar id="overviewHTMLModel" type="com.cantire.tetris.pogsetupguide.dto.model.OverviewHtmlModel"*/-->
+
+<div class="overviewPage" th:with="overviewHTMLModel = ${overviewHTMLModel},
+                segmentElements = ${overviewHTMLModel.getSegmentHtmlElements()},
+                segmentDimensions = ${overviewHTMLModel.getSegmentDimensions()},
+                overviewTableFields = ${overviewHTMLModel.getOverviewTableFields()},
+                scale = ${segmentDimensions.getScale()}">
+
+    <!--/*@thymesVar id="overviewHTMLModel" type="com.cantire.tetris.pogsetupguide.dto.model.OverviewHtmlModel"*/-->
+    <!--/*@thymesVar id="segmentElements" type="com.cantire.tetris.pogsetupguide.dto.model.segment.JoinedSegmentHtmlElements"*/-->
+    <!--/*@thymesVar id="segmentDimensions" type="com.cantire.tetris.pogsetupguide.dto.model.segment.SegmentDimensions"*/-->
+    <!--/*@thymesVar id="overviewTableFields" type="com.cantire.tetris.pogsetupguide.dto.model.OverviewTableFields"*/-->
+    <!--    <svg width="68.8962890625" height="34.47283854166667" style="overflow: visible;"><g><rect x="0" y="0" width="22.965429687500002" height="11.507408854166666" stroke="#005143" stroke-width="0.5" fill="#00796B" fill-opacity="0.7" class="makeStyles-rect-1080"></rect><line x1="0" y1="0" x2="11.482714843750001" y2="11.007408854166666" stroke="#005143" stroke-width="0.5"></line><line x1="11.482714843750001" y1="11.007408854166666" x2="22.965429687500002" y2="0" stroke="#005143" stroke-width="0.5"></line></g><g><rect x="22.965429687500002" y="0" width="22.965429687500002" height="11.507408854166666" stroke="#005143" stroke-width="0.5" fill="#00796B" fill-opacity="0.7" class="makeStyles-rect-1080"></rect><line x1="22.965429687500002" y1="0" x2="34.44814453125" y2="11.007408854166666" stroke="#005143" stroke-width="0.5"></line><line x1="34.44814453125" y1="11.007408854166666" x2="45.930859375000004" y2="0" stroke="#005143" stroke-width="0.5"></line></g><g><rect x="45.930859375000004" y="0" width="22.965429687500002" height="11.507408854166666" stroke="#005143" stroke-width="0.5" fill="#00796B" fill-opacity="0.7" class="makeStyles-rect-1080"></rect><line x1="45.930859375000004" y1="0" x2="57.41357421875001" y2="11.007408854166666" stroke="#005143" stroke-width="0.5"></line><line x1="57.41357421875001" y1="11.007408854166666" x2="68.8962890625" y2="0" stroke="#005143" stroke-width="0.5"></line></g><g><rect x="0" y="11.507408854166666" width="22.965429687500002" height="22.965429687500002" stroke="#005143" stroke-width="0.5" fill="#00796B" fill-opacity="1" class="makeStyles-rect-1080"></rect></g><g><rect x="22.965429687500002" y="11.507408854166666" width="22.965429687500002" height="22.965429687500002" stroke="#005143" stroke-width="0.5" fill="#00796B" fill-opacity="1" class="makeStyles-rect-1080"></rect></g><g><rect x="45.930859375000004" y="11.507408854166666" width="22.965429687500002" height="22.965429687500002" stroke="#005143" stroke-width="0.5" fill="#00796B" fill-opacity="1" class="makeStyles-rect-1080"></rect></g><rect x="13.448144531250001" y="16.990123697916665" height="12" width="42" fill="#fff" stroke="#fff" rx="2"></rect><text x="34.44814453125" y="23.990123697916665" font-size="10" font-weight="500" color="#373134" text-anchor="middle" dominant-baseline="middle" transform="">0421182</text></svg>-->
+    <div class="overviewPageHeader">
+        <div class="logo">
+            <img th:src="@{classpath:static/images/tetris_logo.png}"/>
+        </div>
+        <div class="name" th:text="${overviewHTMLModel.getPogName()}"></div>
+        <div class="id" th:text="${overviewHTMLModel.getPogId()}+'-'+${overviewHTMLModel.getSide()}"></div>
+    </div>
+    <!--    <svg width="68.8962890625" height="34.47283854166667" style="overflow: visible;"><g><rect x="0" y="0" width="22.965429687500002" height="11.507408854166666" stroke="#005143" stroke-width="0.5" fill="#00796B" fill-opacity="0.7" class="makeStyles-rect-1080"></rect><line x1="0" y1="0" x2="11.482714843750001" y2="11.007408854166666" stroke="#005143" stroke-width="0.5"></line><line x1="11.482714843750001" y1="11.007408854166666" x2="22.965429687500002" y2="0" stroke="#005143" stroke-width="0.5"></line></g><g><rect x="22.965429687500002" y="0" width="22.965429687500002" height="11.507408854166666" stroke="#005143" stroke-width="0.5" fill="#00796B" fill-opacity="0.7" class="makeStyles-rect-1080"></rect><line x1="22.965429687500002" y1="0" x2="34.44814453125" y2="11.007408854166666" stroke="#005143" stroke-width="0.5"></line><line x1="34.44814453125" y1="11.007408854166666" x2="45.930859375000004" y2="0" stroke="#005143" stroke-width="0.5"></line></g><g><rect x="45.930859375000004" y="0" width="22.965429687500002" height="11.507408854166666" stroke="#005143" stroke-width="0.5" fill="#00796B" fill-opacity="0.7" class="makeStyles-rect-1080"></rect><line x1="45.930859375000004" y1="0" x2="57.41357421875001" y2="11.007408854166666" stroke="#005143" stroke-width="0.5"></line><line x1="57.41357421875001" y1="11.007408854166666" x2="68.8962890625" y2="0" stroke="#005143" stroke-width="0.5"></line></g><g><rect x="0" y="11.507408854166666" width="22.965429687500002" height="22.965429687500002" stroke="#005143" stroke-width="0.5" fill="#00796B" fill-opacity="1" class="makeStyles-rect-1080"></rect></g><g><rect x="22.965429687500002" y="11.507408854166666" width="22.965429687500002" height="22.965429687500002" stroke="#005143" stroke-width="0.5" fill="#00796B" fill-opacity="1" class="makeStyles-rect-1080"></rect></g><g><rect x="45.930859375000004" y="11.507408854166666" width="22.965429687500002" height="22.965429687500002" stroke="#005143" stroke-width="0.5" fill="#00796B" fill-opacity="1" class="makeStyles-rect-1080"></rect></g><rect x="13.448144531250001" y="16.990123697916665" height="12" width="42" fill="#fff" stroke="#fff" rx="2"></rect><text x="34.44814453125" y="23.990123697916665" font-size="10" font-weight="500" color="#373134" text-anchor="middle" dominant-baseline="middle" transform="">0421182</text></svg>-->
+    <div class="overviewContentWrapper">
+        <div class="overviewContent">
+
+            <div class="pogContainer">
+                <div class="pogContent"
+                     th:style="${segmentDimensions.getContainerStyles(true)}">
+
+                    <div class="pogSegmentBorder" th:each="segmentBorder : ${segmentElements.getSegmentBorders()}"
+                         th:style="${segmentBorder.getStyles()}">
+                    </div>
+
+                    <div class="pogFacingGroup" th:each="facingGroup : ${segmentElements.getFacings()}"
+                         th:style="${facingGroup.getStyles()}">
+                    </div>
+
+                    <div class="pogFixture" th:each="fixture : ${segmentElements.getFixtures()}"
+                         th:style="${fixture.getStyles()}">
+                        <div class="grilleWrapper" th:each="fixtureChild: ${fixture.getChildren()}"
+                             th:style="${fixtureChild.getStyles()}">
+                            <div class="grille"></div>
+                            <div class="grille"></div>
+                            <div class="grille"></div>
+                            <div class="grille"></div>
+                            <div class="grille"></div>
+                            <div class="grille"></div>
+                            <div class="grille"></div>
+                            <div class="grille"></div>
+                            <div class="grille"></div>
+                            <div class="grille"></div>
+                        </div>
+                    </div>
+
+                    <div class="pogLeadIn" th:each="leadIn : ${segmentElements.getLeadIns()}"
+                         th:style="${leadIn.getStyles()}" th:text="${leadIn.getLabel()}">
+                    </div>
+                    <!--                    <div class="topMessage" th:each="topMessage : ${segmentElements.getTopMessages()}"-->
+                    <!--                         th:style="${topMessage.getStyles()}"-->
+                    <!--                         th:text="${topMessage.getLabel()}">-->
+                    <!--                    </div>-->
+
+                    <!--                    <div class="leadSegment" th:with="leadLabel=${segmentElements.getLeadLabel()}"-->
+                    <!--                         th:style="${leadLabel.getStyles()}"-->
+                    <!--                         th:text="${leadLabel.getLabel()}">-->
+                    <!--                    </div>-->
+
+                </div>
+            </div>
+
+            <div class="overviewTable">
+                <div class="heading">Planogram Notes:</div>
+                <div class="alert">
+                    <p>Please ensure that you review and comply with the “Guide to Safe Shelving Systems”
+                        requirements for the safety of customers and employees. The guide can be located on the CTC Open
+                        House
+                        Portal following this path "Store Operations / Merchandising / Fixtures and POP".</p>
+                    <p>Secure Displays. Follow manufacturer instructions to ensure all displays are safely secured.</p>
+                    <br>
+                    <p>Veuillez consulter le « Guide sur l’installation sécuritaire du matériel d’étalage » et vous
+                        conformer aux normes de sécurité qui y sont définies, afin d'assurer la sécurité de vos clients
+                        et celle de vos employés. Le « Guide sur l’installation sécuritaire du matériel d’étalage » est
+                        publié sur le portail Info Maison : « Activités des magasins / Commercialisation / Matériel de
+                        présentation et de PLV ».sur l’installation sécuritaire du matériel d’étalage » et vous
+                        conformer aux normes de sécurité qui y sont définies, afin d'assurer la sécurité de vos clients
+                        et celle de vos employés</p>
+                </div>
+                <div class="merch" th:text="${overviewTableFields.getMerchNotes()}" th:style="${'font-size: '+overviewHTMLModel.getMerchFontSize()+';'}">
+                </div>
+                <div class="footer">
+                    <div class="email">
+                        <div class="footerHeader">Email:</div>
+                        <div th:text="${overviewTableFields.getEmail()}"></div>
+                    </div>
+                    <div class="deal">
+                        <div class="footerHeader">Deal #:</div>
+                        <div th:text="${overviewTableFields.getDealNumber()}"></div>
+                    </div>
+                    <div class="date">
+                        <div class="footerHeader">Merch Release Date:</div>
+                        <div th:text="${overviewTableFields.getMerchDate()}"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

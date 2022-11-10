@@ -1,0 +1,5 @@
+#spring.cache.jcache.config=classpath:ehcache.xml
+#Entry made to define Path of ehcache.xml file
+spring.cache.jcache.config:
+  classpath:ehcache.xml
+  
