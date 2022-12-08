@@ -19,6 +19,7 @@ import com.example.demo.model.ReportModel;
 import com.example.demo.template.SavingThymeleafTemplateProcessor;
 import com.example.demo.template.TemplateProcessor;
 import com.example.demo.template.ThymeleafTemplateProcessor;
+import com.example.demo.utils.Constants;
 import com.example.demo.utils.HtmlToPdfWriter;
 
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class PdfReportGenerator {
 
 	private TemplateProcessor templateProcessor;
 	private HtmlToPdfWriter htmlToPdfWriter;
-	private String pogGuideFileName = "POG Setup Guide.pdf";
+	private String pogGuideFileName = Constants.POG_GUIDE_PDF_FILE;
 	private String pogPerfHtmlFile = "PerformanceReport.html";
 	private String pogExclHtmlFile = "ExcludedReport.html";
 	private String pogFixSummaryHtmlFile = "FixtureSummaryReport.html";

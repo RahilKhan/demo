@@ -41,6 +41,8 @@ public class RegularExpressionHandler {
 		String quoteDateStr = datePtrn.quote(Constants.NAME_MULTI_HYPEN_DATE);
 		System.out.println("quoteDateStr : " + quoteDateStr);
 		
+		Boolean vowelPresent = quoteDateStr.toLowerCase().matches(".*[aeiou].*");
+		System.out.println("vowel in quoteDateStr : " + vowelPresent);
 	}
 	
 }

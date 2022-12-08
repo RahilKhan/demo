@@ -1,11 +1,13 @@
-package com.example.demo.java8stream;
+package com.example.demo.java8;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.example.demo.model.Employee;
+
 
 public class StreamListToMap {
 
@@ -28,7 +30,18 @@ public class StreamListToMap {
 				Collectors.groupingBy(Employee::getId, Collectors.mapping(Employee::getId, Collectors.toList())));
 		System.out.println("result3 : " + result3 + "\n result3.isEmpty() : " + result3.isEmpty());
 		
+
+		list.stream().sorted(Comparator.comparing(Employee::getName))
+				 .collect(Collectors.toList());
+		System.out.println("\nsorted list : " + list.toString());
+
 		
+		List<Employee> empList = (List<Employee>) list.stream().sorted(Comparator.comparing(Employee::getName))
+				 .collect(Collectors.toList());
+		System.out.println("\nempList list : " + empList.toString());
+
+		float avgPrice = 0;
+		System.out.println("\navgPrice : " + avgPrice);
 		
 		
 	}
