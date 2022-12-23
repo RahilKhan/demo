@@ -8,9 +8,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Employee {
-	
+
 	private int id;
 	private String name;
-	private int salary;
+	private double salary;
+	private int age;
+	private String gender;
+	private String department;
+	private int yearOfJoining;
 
 }

@@ -20,7 +20,7 @@ public class RtAnglePyramid {
 	}
 
 	private static void rtAnglePyramidLeft(int n) {
-		System.out.println("\n-----------Rignt Angle triangle Left---------------- ");
+		System.out.println("\n-----------Rt-Angle triangle Left---------------- ");
 		for (int i = 0; i < n; i++) {
 			for (int j = 1; j <= n - i; j++) {
 				System.out.print(" ");
@@ -33,7 +33,7 @@ public class RtAnglePyramid {
 	}
 
 	private static void rtAnglePyramidRight(int n) {
-		System.out.println("\n-----------Rignt Angle triangle Right---------------- ");
+		System.out.println("\n-----------Rt-Angle triangle Right---------------- ");
 		for (int i = 0; i < n; i++) {
 
 			for (int j = 1; j <= i; j++) {
@@ -44,7 +44,7 @@ public class RtAnglePyramid {
 	}
 	
 	private static void rtAnglePyramidInvertedLeft(int n) {
-		System.out.println("\n-----------Rignt Angle triangle Inverted Left---------------- ");
+		System.out.println("\n-----------Rt-Angle triangle Inverted Left---------------- ");
 		for (int i = 0; i < n; i++) {
 			for (int j = 1; j <= n - i; j++) {
 				System.out.print("*");
@@ -55,7 +55,7 @@ public class RtAnglePyramid {
 	}
 
 	private static void rtAnglePyramidInvertedRight(int n) {
-		System.out.println("\n-----------Rignt Angle triangle Right-WIP---------------- ");
+		System.out.println("\n-----------Rt-Angle triangle Right---------------- ");
 		for (int i = 0; i < n; i++) {
 			for (int j = 1; j <= i; j++) {
 				System.out.print(" ");

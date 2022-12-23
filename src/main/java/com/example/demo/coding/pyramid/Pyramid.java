@@ -15,16 +15,16 @@ public class Pyramid {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		numberIsoscelesPyramid(10);
-		astericIsoscelesPyramid(10);
-
-
+		numberIsoscelesPyramid(9);
+		numberInvertedIsoscelesPyramid(9);
+		astericIsoscelesPyramid(9);
+		astericInvertedIsoscelesPyramid(9);
 	}
 
 	private static void numberIsoscelesPyramid(int n) {
 		System.out.println("\n-----------Number Isosceles Pyramid---------------- ");
 
-		for (int i = 0; i < n; i++) {
+		for (int i = 1; i <= n; i++) {
 
 			for (int j = 1; j <= n - i; j++) {
 				System.out.print(" ");
@@ -36,9 +36,27 @@ public class Pyramid {
 		}
 	}
 
+	private static void numberInvertedIsoscelesPyramid(int n) {
+		System.out.println("\n-----------Number Inverted Isosceles Pyramid---------------- ");
+
+		for (int i = n, k = 1; i >= 1; i--, k++) {
+
+			for (int j = 1; j <= n - i; j++) {
+				System.out.print(" ");
+			}
+//			for (int j = i; j >= 1; j--) {
+//				System.out.print(i + " ");
+//			}
+			for (int j = 1; j <= i; j++) {
+				System.out.print(k + " ");
+			}
+			System.out.println("");
+		}
+	}
+
 	private static void astericIsoscelesPyramid(int n) {
 		System.out.println("\n-----------* Isosceles Pyramid---------------- ");
-		for (int i = 0; i < n; i++) {
+		for (int i = 1; i <= n; i++) {
 
 			for (int j = 1; j <= n - i; j++) {
 				System.out.print(" ");
@@ -50,6 +68,18 @@ public class Pyramid {
 		}
 	}
 
+	private static void astericInvertedIsoscelesPyramid(int n) {
+		System.out.println("\n-----------* Isosceles Pyramid---------------- ");
+		for (int i = n; i >= 1; i--) {
 
+			for (int j = 1; j <= n - i; j++) {
+				System.out.print(" ");
+			}
+			for (int j = i; j >= 1; j--) {
+				System.out.print("* ");
+			}
+			System.out.println("");
+		}
+	}
 
 }

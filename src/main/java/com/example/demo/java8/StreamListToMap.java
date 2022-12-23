@@ -13,9 +13,9 @@ public class StreamListToMap {
 
 	public static void main(String... args) {
 		List<Employee> list = new ArrayList<>();
-		list.add(new Employee(1, "John", 80000));
-		list.add(new Employee(2, "Jack", 90000));
-		list.add(new Employee(3, "Ricky", 120000));
+		list.add(new Employee(1, "John", 80000, 0, null, null, 0));
+		list.add(new Employee(2, "Jack", 90000, 0, null, null, 0));
+		list.add(new Employee(3, "Ricky", 120000, 0, null, null, 0));
 
 		// key = id, value - name
 		Map<Integer, String> result1 = list.stream().collect(Collectors.toMap(Employee::getId, Employee::getName));

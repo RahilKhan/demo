@@ -13,7 +13,7 @@ public class GenericsMain {
 	 */
 	public static void main(String[] args) {
 		
-		Employee employee = new Employee(1001, "GenericMainClass", 1000);
+		Employee employee = new Employee(1001, "GenericMainClass", 1000, 0, null, null, 0);
 		GenericClass genC = new GenericClass(employee);
 		Employee empl = (Employee) genC.respond();
 		
