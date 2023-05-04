@@ -17,11 +17,10 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>17.0.5</java.version>
 		<mockitoversion>4.6.0</mockitoversion>
 
 		<!--BEGIN : pog-setup-guide -->
-		<java.version>1.8</java.version>
 		<tetris-log.version>0.0.6</tetris-log.version>
 		<azure-keyvault-secrets.version>4.4.2</azure-keyvault-secrets.version>
 		<azure-storage-blob.version>12.16.1</azure-storage-blob.version>
