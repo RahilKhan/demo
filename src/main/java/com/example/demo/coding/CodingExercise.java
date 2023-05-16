@@ -61,7 +61,7 @@ public class CodingExercise {
 		List<Employee> sortedEmpBySal = empList.stream().sorted(Comparator.comparing(Employee::getSalary).reversed())
 				.collect(Collectors.toList());
 		sortedEmpBySal.forEach(item -> System.out.println(item));
-		
+
 		System.out.println("---------------empLst---------------");
 		Employee employee = empList.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed())
 				.collect(Collectors.toList()).get(1);

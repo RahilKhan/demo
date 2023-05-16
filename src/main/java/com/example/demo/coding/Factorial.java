@@ -36,11 +36,16 @@ public class Factorial {
 		}
 	}
 
+	/**
+	 * Complexity -> O(2^n)
+	 * @param n
+	 * @return
+	 */
 	private static int factorial(int n) {
 		if (n == 1 || n == 0)
 			return 1;
 		else if (n < 0)
-			throw new IllegalArgumentException("Illegal argument. arg should be greated than or equal to 0");
+			throw new IllegalArgumentException("Illegal argument. arg should be greater than or equal to 0");
 
 		return n * factorial(n - 1);
 	}
