@@ -25,6 +25,11 @@ public class LruCacheSingleClass {
             int keyRemoved = (int) cacheList.removeLast();
             cacheMap.remove(keyRemoved);
         }
+
+        if(cacheMap.containsKey(key)){
+            cacheList.remove(key);
+        }
+
         cacheList.addFirst(key);
         cacheMap.put(key, value);
     }
@@ -33,8 +38,10 @@ public class LruCacheSingleClass {
         if (!cacheMap.containsKey(key)) {
             return null;
         }
-        int keyRemoved = (int) cacheList.removeLast();
-        cacheMap.remove(keyRemoved);
+//        int keyRemoved = (int) cacheList.removeLast();
+//        cacheMap.remove(keyRemoved);
+        cacheList.remove(key);
+        cacheMap.remove(key);
         return key;
     }
 

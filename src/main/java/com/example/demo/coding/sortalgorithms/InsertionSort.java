@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.example.demo.coding;
+package com.example.demo.coding.sortalgorithms;
 
 /**
  * Write a program for the recursive implementation of Insertion Sort. Input:

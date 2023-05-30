@@ -5,19 +5,20 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SequentialExecutionRunnable implements Runnable {
 
-    String semaphore;
-
-    public SequentialExecutionRunnable(String semaphore) {
-        this.semaphore = semaphore;
-    }
-
-
     @Override
     public void run() {
-        if (Thread.currentThread().getName().equals(semaphore)) {
-            log.info(Thread.currentThread().getName() + " : " + semaphore);
+        log.info("Thread{} : semaphore-{}", Thread.currentThread().getId(), SequentialExeMain.semaphore);
+        if (Thread.currentThread().getId() == SequentialExeMain.semaphore) {
+            log.info("Match found Thread{} : semaphore-{}", Thread.currentThread().getId(), SequentialExeMain.semaphore);
+            SequentialExeMain.semaphore++;
+        } else {
+            try {
+                Thread.sleep(30);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
-    }
 
+    }
 
 }
