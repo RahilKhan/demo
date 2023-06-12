@@ -1,4 +1,4 @@
-package com.example.demo.concurrency.threads.cyclicbarrier;
+package com.example.demo.javafeatures.concurrency.threads.cyclicbarrier;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;

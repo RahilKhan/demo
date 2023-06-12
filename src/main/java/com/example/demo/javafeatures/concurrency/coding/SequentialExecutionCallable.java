@@ -1,4 +1,4 @@
-package com.example.demo.concurrency.coding;
+package com.example.demo.javafeatures.concurrency.coding;
 
 public class SequentialExecutionCallable implements Runnable {
 

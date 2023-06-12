@@ -1,16 +1,16 @@
 /**
  * 
  */
-package com.example.demo.concurrency.threads;
+package com.example.demo.javafeatures.concurrency.threads;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Phaser;
 
-import com.example.demo.concurrency.threads.exeution.simultaneous.WorkerWithCountDownLatch;
-import com.example.demo.concurrency.threads.exeution.simultaneous.WorkerWithCyclicBarrier;
-import com.example.demo.concurrency.threads.exeution.simultaneous.WorkerWithPhaser;
+import com.example.demo.javafeatures.concurrency.threads.exeution.simultaneous.WorkerWithCountDownLatch;
+import com.example.demo.javafeatures.concurrency.threads.exeution.simultaneous.WorkerWithCyclicBarrier;
+import com.example.demo.javafeatures.concurrency.threads.exeution.simultaneous.WorkerWithPhaser;
 
 /**
  * @author Rahil_Khan

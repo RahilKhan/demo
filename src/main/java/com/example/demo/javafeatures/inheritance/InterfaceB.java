@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.example.demo.inheritance;
+package com.example.demo.javafeatures.inheritance;
 
 /**
  * @author Rahil_Khan

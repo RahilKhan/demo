@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.example.demo.concurrency.executor;
+package com.example.demo.javafeatures.concurrency.executor;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;

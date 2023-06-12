@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.example.demo.inheritance;
+package com.example.demo.javafeatures.inheritance;
 
 
 /*The type AbstractA cannot be a superinterface of InterfaceA; a superinterface must be an interface*/

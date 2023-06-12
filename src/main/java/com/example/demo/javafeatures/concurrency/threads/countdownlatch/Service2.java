@@ -1,12 +1,12 @@
-package com.example.demo.concurrency.threads.countdownlatch;
+package com.example.demo.javafeatures.concurrency.threads.countdownlatch;
 
 import java.util.concurrent.CountDownLatch;
 
-public class Service1 implements Runnable {
+public class Service2 implements Runnable {
 
     CountDownLatch cdl;
 
-    public Service1(CountDownLatch cdl) {
+    public Service2(CountDownLatch cdl) {
         super();
         this.cdl = cdl;
     }
@@ -19,7 +19,8 @@ public class Service1 implements Runnable {
             iex.printStackTrace();
         }
         cdl.countDown();
-        System.out.println("Services1 : "+cdl.getCount());
+        System.out.println("Services2 : " + cdl.getCount());
+
     }
 
 }

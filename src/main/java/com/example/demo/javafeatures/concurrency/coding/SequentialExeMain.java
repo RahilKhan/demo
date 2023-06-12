@@ -1,4 +1,4 @@
-package com.example.demo.concurrency.coding;
+package com.example.demo.javafeatures.concurrency.coding;
 
 import lombok.extern.slf4j.Slf4j;
 

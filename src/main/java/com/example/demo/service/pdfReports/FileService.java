@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import com.cantire.tetris.log.TetrisLogger;
 
 import com.example.demo.dto.PogGuide;
-import com.example.demo.exception.FileGenerationException;
+import com.example.demo.javafeatures.exception.FileGenerationException;
 import com.example.demo.utils.Constants;
 
 import lombok.RequiredArgsConstructor;
