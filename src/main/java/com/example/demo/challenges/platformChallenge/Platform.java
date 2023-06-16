@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
 
 /**
  * Problem: Find the minimum number of platform required to accommodate the given arrival and departure timings in a station.
@@ -17,28 +16,6 @@ import java.util.TreeMap;
 public class Platform {
 
     public static void main(String... args) {
-        List<Train> trainList = new ArrayList<>();
-        trainList.add(new Train(LocalTime.parse("20:00"), LocalTime.parse("23:55")));
-        trainList.add(new Train(LocalTime.parse("12:00"), LocalTime.parse("18:45")));
-        trainList.add(new Train(LocalTime.parse("15:15"), LocalTime.parse("17:55")));
-        trainList.add(new Train(LocalTime.parse("18:30"), LocalTime.parse("19:45")));
-        trainList.add(new Train(LocalTime.parse("13:45"), LocalTime.parse("17:10")));
-
-//        Collections.sort(trainList);
-//        trainList.stream().sorted(Train::compareTo);
-//        trainList.stream().sorted(Comparator.comparing(Train::getName).reversed();
-        log.info("trainList : {} ", trainList);
-
-
-        TreeMap<LocalTime, LocalTime> trainTreeMap = new TreeMap();
-        trainTreeMap.put(LocalTime.parse("20:00"), LocalTime.parse("23:55"));
-        trainTreeMap.put(LocalTime.parse("12:00"), LocalTime.parse("18:45"));
-        trainTreeMap.put(LocalTime.parse("15:15"), LocalTime.parse("17:55"));
-        trainTreeMap.put(LocalTime.parse("18:30"), LocalTime.parse("19:45"));
-        trainTreeMap.put(LocalTime.parse("13:45"), LocalTime.parse("17:10"));
-        log.info("trainTreeMap : {} ", trainTreeMap);
-
-
         ArrayList<LocalTime> arrivalList = new ArrayList();
         arrivalList.add(LocalTime.parse("20:00"));
         arrivalList.add(LocalTime.parse("15:15"));
@@ -52,6 +29,14 @@ public class Platform {
         departurelList.add(LocalTime.parse("18:45"));
         departurelList.add(LocalTime.parse("19:45"));
         departurelList.add(LocalTime.parse("17:10"));
+
+        List<Train> trainList = new ArrayList<>();
+        trainList.add(new Train(LocalTime.parse("20:00"), LocalTime.parse("23:55")));
+        trainList.add(new Train(LocalTime.parse("12:00"), LocalTime.parse("18:45")));
+        trainList.add(new Train(LocalTime.parse("15:15"), LocalTime.parse("17:55")));
+        trainList.add(new Train(LocalTime.parse("18:30"), LocalTime.parse("19:45")));
+        trainList.add(new Train(LocalTime.parse("13:45"), LocalTime.parse("17:10")));
+        log.info("trainList : {} ", trainList);
 
         findMinPlatforms(arrivalList, departurelList);
     }
