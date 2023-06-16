@@ -1,4 +1,4 @@
-package com.example.demo.concurrency.threads.exeution.simultaneous;
+package com.example.demo.javafeatures.concurrency.threads.exeution.simultaneous;
 
 import java.time.Instant;
 import java.util.concurrent.BrokenBarrierException;
