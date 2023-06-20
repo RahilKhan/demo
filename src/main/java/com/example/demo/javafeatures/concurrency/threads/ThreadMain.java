@@ -24,9 +24,16 @@ public class ThreadMain {
 	 * @throws BrokenBarrierException 
 	 */
 	public static void main(String[] args) throws InterruptedException, BrokenBarrierException {
+
+		Thread t1 = new Thread(() -> System.out.println("thread t1 running"));
+		t1.start();
+
+		(new Thread(() -> System.out.println("thread t2 running"))).start();
+
 		usingCountDownLatch();
 		usingCyclicBarrier();
 		usingPhaser();
+
 
 	}
 
