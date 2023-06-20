@@ -1,7 +1,14 @@
 package com.example.demo.challenges.parenthesis;
 
 
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Problem Statement
@@ -9,11 +16,14 @@ import java.util.Scanner;
  * Input Format
  * The first line of input consists of two space-separated integers, N (number of animals) and X (available capacity for animals that can be transported).
  * The second line of input consists of N space-separated integers, representing the energy of all the animals.
+ * Requirement:
+ * Select exactly 'X' animals with energy 'X' from list 'E'
+ * where X <= N (Total no. of animals)
  * <p>
  * Constraints
- * 1<= N <=10^5
- * 1<= X <=N
- * 1<= arr[i] <=10^12
+ * 1 <= N <= 10^5
+ * 1 <= X <= N
+ * 1 <= arr[i] <= 10^12
  * <p>
  * Arr[i] represents the energy level of the ith animal.
  * <p>
@@ -27,29 +37,98 @@ import java.util.Scanner;
  * Output
  * 2
  */
+
+@Slf4j
 public class MaxAnimalByEnergyLevels {
 
     public static void main(String args[]) throws Exception {
 
-        int firstNum, secondNum, result;
+        /*
         Scanner scanner = new Scanner(System.in);
 
-        // scanner.hasNextLine();
         String inputStrArr = scanner.nextLine();
-        System.out.println(" inputStrArr :" + inputStrArr);
+        log.info(" inputStrArr :" + inputStrArr);
         String[] arrOfStr = inputStrArr.split(" ");
         int numOfAnimals = Integer.parseInt(arrOfStr[0]);
         int capacity = Integer.parseInt(arrOfStr[1]);
-        System.out.println(" numOfAnimals : " + numOfAnimals);
-        System.out.println(" capacity : " + capacity);
+        log.info(" numOfAnimals : " + numOfAnimals);
+        log.info(" capacity : " + capacity);
 
         String energyStr = scanner.nextLine();
-        System.out.println(" energyStr : " + energyStr);
+        log.info(" energyStr : " + energyStr);
         String[] arrOfEnergyStr = energyStr.split(" ");
-        for(String str : arrOfEnergyStr){
-            
-        }
+        */
+
+        int numOfAnimals = 8;
+        int capacity = 5;
+
+        String[] arrOfEnergyStr = new String[]{"2", "3", "33", "7", "4", "5", "9", "6"};
+        findMinEnergyToSaveAnimal(numOfAnimals, capacity, arrOfEnergyStr);
+
+        arrOfEnergyStr = new String[]{"2", "33", "33", "7", "7", "7", "4", "4"};
+        findMinEnergyToSaveAnimal(numOfAnimals, capacity, arrOfEnergyStr);
+
+
+        arrOfEnergyStr = new String[]{"2", "33", "33", "7", "7", "4", "4", "4"};
+        findMinEnergyToSaveAnimal(numOfAnimals, capacity, arrOfEnergyStr);
+
+        arrOfEnergyStr = new String[]{"7", "7", "7", "7", "7", "4", "4", "4"};
+        findMinEnergyToSaveAnimal(numOfAnimals, capacity, arrOfEnergyStr);
+
+        arrOfEnergyStr = new String[]{"7", "7", "7", "7", "7", "7", "7", "7"};
+        findMinEnergyToSaveAnimal(numOfAnimals, capacity, arrOfEnergyStr);
 
 
     }
+
+    private static void findMinEnergyToSaveAnimal(int numOfAnimals, int capacity, String[] arrOfEnergyStr) {
+        log.info("------------------------------------");
+        log.info("numOfAnimals : " + numOfAnimals);
+        log.info("capacity : " + capacity);
+
+        Set<String> energySet = new HashSet<>(List.of(arrOfEnergyStr));
+
+        List<Integer> energyList = new ArrayList<>();
+        for (String str : arrOfEnergyStr) {
+            energyList.add(Integer.parseInt(str));
+        }
+        energyList = energyList.stream().sorted().toList();
+        log.info("energyList : " + energyList);
+
+        if (numOfAnimals < capacity) {
+            log.info("-1");
+            return;
+        } else if (numOfAnimals < arrOfEnergyStr.length) {
+            log.info("-1");
+            return;
+        }
+
+        Integer energyIndex = energyList.size() - capacity;
+        /*
+        if (energySet.size() == energyList.size()) {
+            log.info("No duplicate energy of animals");
+            log.info("energyIndex -> {} : energy -> {}", energyIndex, energyList.get(energyIndex));
+        } else {
+            log.info("Animals with duplicate energy");
+            if (energyList.get(energyIndex - 1) == energyList.get(energyIndex))
+                log.info("-1");
+            else {
+
+            }
+        }
+        */
+
+        if (energySet.size() != energyList.size()) {
+            log.info("Animals with duplicate energy");
+            if (energyList.get(energyIndex - 1) == energyList.get(energyIndex)) {
+                log.info("-1");
+                return;
+            }
+        }
+        log.info("energyIndex -> {} : energy -> {}", energyIndex, energyList.get(energyIndex));
+
+
+    }
+
+
 }
