@@ -1,6 +1,9 @@
 package com.example.demo.challenges.parenthesis;
 
-import static com.itextpdf.html2pdf.html.AttributeConstants.i;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.Stack;
+
 
 /**
  * https://leetcode.com/problems/valid-parentheses/
@@ -27,37 +30,98 @@ import static com.itextpdf.html2pdf.html.AttributeConstants.i;
  * 1 <= s.length <= 104
  * s consists of parentheses only '()[]{}'.
  */
+@Slf4j
 public class ValidParenthesis {
 
     public static void main(String... args) {
-        String s = "({()})[]{}({})()";
-        isValid(s);
+        String validStr = "({()})[]{}({})()";
+        log.info("Parenthesis string '{}' is valid : {}", validStr, isValid(validStr));
+
+        String invalidStr = "({()})[{}({})()";
+        log.info("Parenthesis string '{}' is valid : {}", invalidStr, isValid(invalidStr));
+
+        String parenthesisStr = "(>}";
+        log.info("Parenthesis string '{}' is valid : {}", parenthesisStr, isValid(parenthesisStr));
+
+        parenthesisStr = "()[]{}";
+        log.info("Parenthesis string '{}' is valid : {}", parenthesisStr, isValid(parenthesisStr));
+
+        parenthesisStr = "(]";
+        log.info("Parenthesis string '{}' is valid : {}", parenthesisStr, isValid(parenthesisStr));
+
+        parenthesisStr = ")(<>{}][";
+        log.info("Parenthesis string '{}' is valid : {}", parenthesisStr, isValid(parenthesisStr));
+
+        parenthesisStr = "()[]^{}";
+        log.info("Parenthesis string '{}' is valid : {}", parenthesisStr, isValid(parenthesisStr));
+
     }
 
     public static boolean isValid(String s) {
         boolean isValid = false;
 
+        Stack stack = new Stack();
         char[] charArray = s.toCharArray();
-        char[] cArray = new char[s.length()];
 
-        int j = 0;
         for (int i = 0; i < charArray.length; i++) {
             if (isOpenBracket(charArray[i])) {
-                cArray[i] = charArray[i];
-            }else if (isClosingBracket(charArray[i])) {
-                
+                stack.push(charArray[i]);
+            } else if (isClosingBracket(charArray[i])) {
+                /* Condition to check if closing bracket arrives and stack is empty -> invalid str */
+                if (stack.isEmpty())
+                    return false;
+                char stackedChar = (char) stack.pop();
+                if (!isValidPair(stackedChar, charArray[i])) {
+                    break;
+                } else {
+                    isValid = true;
+                }
+            } else {
+                /* illegal character */
+                return false;
             }
+            if (!stack.isEmpty())
+                isValid = false;
         }
 
         return isValid;
+    }
 
+    private static boolean isValidPair(char stackedChar, char strChar) {
+//        log.info("stackedChar- {} :: strChar- {}", stackedChar, strChar);
+        boolean isValid;
+        switch (strChar) {
+            case '}':
+                isValid = stackedChar == '{' ? true : false;
+                break;
+            case ')':
+                isValid = stackedChar == '(' ? true : false;
+                break;
+            case ']':
+                isValid = stackedChar == '[' ? true : false;
+                break;
+            case '>':
+                isValid = stackedChar == '<' ? true : false;
+                break;
+            default:
+                log.info("Unrecognized character");
+                return false;
+        }
+
+        return isValid;
     }
 
     public static boolean isOpenBracket(char chr) {
-        return true;
+        if (chr == '{' || chr == '(' || chr == '[' || chr == '<')
+            return true;
+        return false;
     }
 
     public static boolean isClosingBracket(char chr) {
-        return true;
+        if (chr == '}' || chr == ')' || chr == ']' || chr == '>')
+            return true;
+        return false;
     }
+
+
 }
