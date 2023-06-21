@@ -8,7 +8,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Find min positive number missing in int[] series excluding 0.
+ * Find the smallest positive integer that does not occur in a given sequence.
+ * 0 is to be excluded.
+ *
  * eg.
  * {1, 3, 5} -> 2
  * {-1, -3, -2, 0} -> 1
