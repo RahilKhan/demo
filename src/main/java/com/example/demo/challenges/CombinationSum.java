@@ -1,4 +1,5 @@
-package com.example.demo.challenges.parenthesis;
+package com.example.demo.challenges;
+
 
 import lombok.extern.slf4j.Slf4j;
 

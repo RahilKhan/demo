@@ -1,14 +1,12 @@
-package com.example.demo.challenges.parenthesis;
+package com.example.demo.challenges;
 
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Set;
 
 /**
  * Problem Statement
@@ -41,7 +39,7 @@ import java.util.ArrayList;
 @Slf4j
 public class MaxAnimalByEnergyLevels {
 
-    public static void main(String args[]) throws Exception {
+    public static void main(String...args) {
 
         /*
         Scanner scanner = new Scanner(System.in);
@@ -104,23 +102,10 @@ public class MaxAnimalByEnergyLevels {
         }
 
         Integer energyIndex = energyList.size() - capacity;
-        /*
-        if (energySet.size() == energyList.size()) {
-            log.info("No duplicate energy of animals");
-            log.info("energyIndex -> {} : energy -> {}", energyIndex, energyList.get(energyIndex));
-        } else {
-            log.info("Animals with duplicate energy");
-            if (energyList.get(energyIndex - 1) == energyList.get(energyIndex))
-                log.info("-1");
-            else {
-
-            }
-        }
-        */
 
         if (energySet.size() != energyList.size()) {
             log.info("Animals with duplicate energy");
-            if (energyList.get(energyIndex - 1) == energyList.get(energyIndex)) {
+            if (energyList.get(energyIndex - 1).equals(energyList.get(energyIndex))) {
                 log.info("-1");
                 return;
             }
