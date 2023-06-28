@@ -1,10 +1,13 @@
-package com.example.demo.challenges;
+package com.example.demo.challenges.codility;
 //package com.codility.tasks.solution;
 
 import java.util.Optional;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.TreeMap;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 // import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
@@ -20,7 +23,7 @@ import java.util.TreeMap;
  * The structure has a limited capacity defined in the constructor call;
  * An element whose Time-To-Leave is lower than the lowest Time-To-Leave in the structure should not be added;
  * When adding an element to a full structure, the pair with the lowest Time-To-Leave shall be replaced
- *      if there's no other entry with the same key already stored;
+ * if there's no other entry with the same key already stored;
  * The data structure provides information about its current size.
  *
  * <p>
@@ -43,7 +46,7 @@ interface TimeProvider {
     long getMillis();
 }
 
-public class CachingDS {
+public class CachingDataStructure {
 
     private int maxSize;
     private TimeProvider timeProvider;
@@ -53,7 +56,7 @@ public class CachingDS {
     private long ttl = 0;
     private static final long OFFSET = 0;
 
-    CachingDS(TimeProvider timeProvider, int maxSize) {
+    CachingDataStructure(TimeProvider timeProvider, int maxSize) {
         this.timeProvider = timeProvider;
         this.maxSize = maxSize;
         timeMap = new TreeMap<>();
@@ -71,8 +74,12 @@ public class CachingDS {
             throw new IllegalArgumentException();
         }
 
+        if (timeToLeaveInMilliseconds <= 0 || key == null) {
+            throw new IllegalArgumentException();
+        }
+
         /** Removing data with expired timeToLeaveInMilliseconds from timeMap & dataMap */
-        if (timeToLeaveInMilliseconds > this.ttl) {
+        if (timeToLeaveInMilliseconds > this.ttl && timeMap.containsKey(timeToLeaveInMilliseconds)) {
             timeMap.remove(timeMap.firstKey());
             dataMap.remove(timeMap.get(timeMap.firstKey()));
         }
@@ -81,13 +88,24 @@ public class CachingDS {
          * Check if timeToLeaveInMilliseconds is not lower than the lowest ttl in timeMap.
          * true -> add/update timeMap and dataMap
          */
-        if (timeToLeaveInMilliseconds >= timeMap.firstKey()) {
+        if (timeMap.size() == 0 || timeToLeaveInMilliseconds > timeMap.firstKey()) {
             if (!timeMap.containsKey(timeToLeaveInMilliseconds) && size() == maxSize) {
                 timeMap.remove(timeMap.firstKey());
                 dataMap.remove(timeMap.get(timeMap.firstKey()));
             }
             timeMap.put(timeToLeaveInMilliseconds, key);
             dataMap.put(key, value);
+        } else {
+            AtomicLong ttlKeyToRemove = new AtomicLong();
+            if (!timeMap.isEmpty()) {
+                timeMap.forEach((ttl, ttlKey) -> {
+                    if (ttlKey == key) {
+                        ttlKeyToRemove.set(ttl);
+                    }
+                });
+                timeMap.remove(ttlKeyToRemove.get());
+                timeMap.put(timeToLeaveInMilliseconds, key);
+            }
         }
     }
 
@@ -96,7 +114,21 @@ public class CachingDS {
             return Optional.empty();
         }
 
-        if(dataMap.containsKey(key))
+        AtomicBoolean rmv = new AtomicBoolean(false);
+        AtomicLong ttlKy = new AtomicLong();
+        timeMap.forEach((ttl, ttlKey) -> {
+            if (ttlKey.equals(key) && ttl < this.ttl) {
+                ttlKy.set(ttl);
+                rmv.set(true);
+            }
+        });
+        if (rmv.get()) {
+            timeMap.remove(ttlKy.get());
+            dataMap.remove(key);
+            return Optional.empty();
+        }
+
+        if (dataMap.containsKey(key))
             return Optional.of(dataMap.get(key));
 
         return Optional.empty();
@@ -104,7 +136,15 @@ public class CachingDS {
     }
 
     public int size() {
-        return timeMap.size();
+        if (timeMap.size() == 0) {
+            return 0;
+        }
+        AtomicInteger mapSize = new AtomicInteger();
+        timeMap.forEach((key, value) -> {
+            if (key != this.ttl)
+                mapSize.getAndIncrement();
+        });
+        return mapSize.get();
         // throw new NotImplementedException();
     }
 
