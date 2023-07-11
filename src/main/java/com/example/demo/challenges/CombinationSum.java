@@ -1,13 +1,12 @@
 package com.example.demo.challenges;
-
+//package com.example.demo.challenges;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * https://leetcode.com/problems/combination-sum/
@@ -44,64 +43,55 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class CombinationSum {
-
-    public static void main(String... args) {
-        int[] intArr = new int[]{6, 7, 2, 3};
-        findCombinationSum(intArr, 7);
-        findCombinationSum(new int[]{6, 2, 7, 8, 6, 2, 3, 9, 8, 6, 3}, 7);
-        findCombinationSum(new int[]{8, 3, 2, 9, 2, 6, 2, 8, 3, 2, 9}, 7);
-        findCombinationSum(new int[]{-2, 6, 2, -8, 9, -3, 13, 1, 2, 6}, 7);
-        findCombinationSum(new int[]{-2, -3, 0, 1, 2, 6, 5, -8, 9, 13, 1, 2, 6}, 9);
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        candidates = IntStream.of(candidates).distinct().filter(cd -> cd > 0).toArray();// filter out duplicate and negative numbers
+        Arrays.sort(candidates); //
+        backtrack(result, new ArrayList<>(), candidates, target, 0);
+        return result;
     }
 
-    private static void findCombinationSum(int[] intArr, int target) {
-        log.info("------------------------------------------");
-        Set<Integer> intSet = Arrays.stream(intArr).boxed().collect(Collectors.toSet());
-        List<Integer> integerList = intSet.stream().sorted().toList();
-        log.info("integerList : {}, target -> {}", integerList, target);
-
-        List<String> combinationList = new ArrayList<>();
-        String combination = "";
-        if (integerList.contains(target)) {
-            combinationList.add(String.valueOf(target));
+    private void backtrack(List<List<Integer>> result, List<Integer> temp, int[] candidates, int target, int start) {
+        log.info("candidates : {} -- target : {} -- start : {} -- temp : {}", candidates, target, start, temp);
+        if (target < 0) {
+            return;
+        }
+        if (target == 0) {
+            result.add(new ArrayList<>(temp)); // add a valid combination to the result
+            return;
         }
 
-        if (integerList.get(integerList.size() - 1) == target) {
-            findCombination(integerList, target);
-        } else {
-            int smallerNo = findNumSmallerThanTarget(integerList, target);
-            log.info("smallerNo : {}", smallerNo);
-
-            int index = integerList.indexOf(smallerNo);
-            findCombination(integerList.subList(0, index), target);
+        for (int i = start; i < candidates.length; i++) {
+            if (target < candidates[i]) {
+                break; // no further numbers need to be checked if the target is less than the current number
+            }
+            temp.add(candidates[i]); // add the current number in the temp list
+            backtrack(result, temp, candidates, target - candidates[i], i); // call the backtrack function recursively with reduced target and starting position as i
+            temp.remove(temp.size() - 1); // remove the last element, backtrack
+            log.info("<---candidates : {} -- target : {} -- start : {} -- temp : {}", candidates, target, start, temp);
         }
 
-        log.info("combinationList : {}", combinationList);
-    }
-
-    private static int findNumSmallerThanTarget(List<Integer> integerList, int target) {
-//        log.info("intermediate integerList : {}", integerList);
-
-        int lstLen = integerList.size();
-        int mid = lstLen / 2;
-
-        if (lstLen < 2) {
-            return integerList.get(0);
-        }
-
-        if (integerList.get(mid) == target)
-            return integerList.get(mid);
-
-        if (integerList.get(mid) < target) {
-            return findNumSmallerThanTarget(integerList.subList(mid, integerList.size()), target);
-        }
-
-        return findNumSmallerThanTarget(integerList.subList(0, mid), target);
-    }
-
-    private static void findCombination(List<Integer> integerList, int target) {
 
     }
 
+    public static void main(String[] args) {
+        CombinationSum obj = new CombinationSum();
+        int[] candidates = {2, 2, 3, 6, 7};
+        int target = 7;
+//        System.out.println("{2, 3, 6, 7} : " + obj.combinationSum(candidates, target)); // Expected output: [[2, 2, 3], [7]]
+//        candidates = new int[]{6, 7, 2, 3};
+//        System.out.println("{6, 7, 2, 3} : " + obj.combinationSum(candidates, target));
+//        candidates = new int[]{6, 2, 7, 8, 6, 2, 3, 9, 8, 6, 3};
+//        System.out.println("{6, 2, 7, 8, 6, 2, 3, 9, 8, 6, 3} : " + obj.combinationSum(candidates, target));
+//        candidates = new int[]{8, 3, 2, 9, 2, 6, 2, 8, 3, 2, 9};
+//        System.out.println("{ 2, 2, 3, 3, 6, 6, 6, 7, 8, 8, 9} : " + obj.combinationSum(candidates, target));
+//        candidates = new int[]{8, 3, 2, 9, 2, 6, 2, 8, 3, 2, 9};
+//        System.out.println("{8, 3, 2, 9, 2, 6, 2, 8, 3, 2, 9} : " + obj.combinationSum(candidates, target));
+        candidates = new int[]{-2, 6, 2, -8, 9, -3, 13, 1, 2, 6};
+        System.out.println("{-2, 6, 2, -8, 9, -3, 13, 1, 2, 6} : " + obj.combinationSum(candidates, target));
+//        candidates = new int[]{-2, -3, 0, 1, 2, 6, 5, -8, 9, 13, 1, 2, 6};
+//        target = 9;
+//        System.out.println("{-2, -3, 0, 1, 2, 6, 5, -8, 9, 13, 1, 2, 6} : " + obj.combinationSum(candidates, target));
 
+    }
 }
