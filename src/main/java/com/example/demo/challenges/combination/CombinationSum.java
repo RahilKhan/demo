@@ -1,5 +1,4 @@
-package com.example.demo.challenges;
-//package com.example.demo.challenges;
+package com.example.demo.challenges.combination;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -78,20 +77,20 @@ public class CombinationSum {
         CombinationSum obj = new CombinationSum();
         int[] candidates = {2, 2, 3, 6, 7};
         int target = 7;
-//        System.out.println("{2, 3, 6, 7} : " + obj.combinationSum(candidates, target)); // Expected output: [[2, 2, 3], [7]]
-//        candidates = new int[]{6, 7, 2, 3};
-//        System.out.println("{6, 7, 2, 3} : " + obj.combinationSum(candidates, target));
-//        candidates = new int[]{6, 2, 7, 8, 6, 2, 3, 9, 8, 6, 3};
-//        System.out.println("{6, 2, 7, 8, 6, 2, 3, 9, 8, 6, 3} : " + obj.combinationSum(candidates, target));
-//        candidates = new int[]{8, 3, 2, 9, 2, 6, 2, 8, 3, 2, 9};
-//        System.out.println("{ 2, 2, 3, 3, 6, 6, 6, 7, 8, 8, 9} : " + obj.combinationSum(candidates, target));
-//        candidates = new int[]{8, 3, 2, 9, 2, 6, 2, 8, 3, 2, 9};
-//        System.out.println("{8, 3, 2, 9, 2, 6, 2, 8, 3, 2, 9} : " + obj.combinationSum(candidates, target));
+        System.out.println("{2, 3, 6, 7} : " + obj.combinationSum(candidates, target)); // Expected output: [[2, 2, 3], [7]]
+        candidates = new int[]{6, 7, 2, 3};
+        System.out.println("{6, 7, 2, 3} : " + obj.combinationSum(candidates, target));
+        candidates = new int[]{6, 2, 7, 8, 6, 2, 3, 9, 8, 6, 3};
+        System.out.println("{6, 2, 7, 8, 6, 2, 3, 9, 8, 6, 3} : " + obj.combinationSum(candidates, target));
+        candidates = new int[]{8, 3, 2, 9, 2, 6, 2, 8, 3, 2, 9};
+        System.out.println("{ 2, 2, 3, 3, 6, 6, 6, 7, 8, 8, 9} : " + obj.combinationSum(candidates, target));
+        candidates = new int[]{8, 3, 2, 9, 2, 6, 2, 8, 3, 2, 9};
+        System.out.println("{8, 3, 2, 9, 2, 6, 2, 8, 3, 2, 9} : " + obj.combinationSum(candidates, target));
         candidates = new int[]{-2, 6, 2, -8, 9, -3, 13, 1, 2, 6};
         System.out.println("{-2, 6, 2, -8, 9, -3, 13, 1, 2, 6} : " + obj.combinationSum(candidates, target));
-//        candidates = new int[]{-2, -3, 0, 1, 2, 6, 5, -8, 9, 13, 1, 2, 6};
-//        target = 9;
-//        System.out.println("{-2, -3, 0, 1, 2, 6, 5, -8, 9, 13, 1, 2, 6} : " + obj.combinationSum(candidates, target));
-
+        candidates = new int[]{-2, -3, 0, 1, 2, 6, 5, -8, 9, 13, 1, 2, 6};
+        target = 9;
+        System.out.println("{-2, -3, 0, 1, 2, 6, 5, -8, 9, 13, 1, 2, 6} : " + obj.combinationSum(candidates, target));
     }
+
 }
