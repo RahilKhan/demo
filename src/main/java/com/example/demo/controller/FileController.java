@@ -47,6 +47,8 @@ public class FileController {
     public ResponseEntity<Resource> createCsv(HttpServletRequest request ) throws IOException {
         PogGuide pogGuide = csvReportGenerator.buildCsv();
 
+
+
         Resource pdfResource = new ByteArrayResource(pogGuide.toByteArray());
 
         return ResponseEntity.ok()
@@ -58,7 +60,9 @@ public class FileController {
     @GetMapping(value = "/create-file")
     public ResponseEntity<String> createFile(HttpServletRequest request ) throws IOException {
     	Map<String, ByteArrayOutputStream> fileResponseMap = fileService.buildfileResponse(pdfReportGenerator,csvReportGenerator);
-    	
+
+        request.getParameter("id");
+
     	Gson gsonObj = new Gson();
     	String fileResponseJson = gsonObj.toJson(fileResponseMap);
     	

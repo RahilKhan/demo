@@ -1,8 +1,9 @@
 /**
  * 
  */
-package com.example.demo.designpattern.command;
+package com.example.demo.designpattern.command.lightcommand;
 
+import com.example.demo.designpattern.command.Command;
 import com.example.demo.model.Light;
 
 /**
@@ -21,5 +22,8 @@ public class LightCommand implements Command {
 	public void execute() {
 		light.on();
 	}
+
+	@Override
+	public void unExecute(){light.off();}
 
 }

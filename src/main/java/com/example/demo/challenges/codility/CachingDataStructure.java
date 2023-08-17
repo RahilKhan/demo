@@ -42,26 +42,26 @@ import java.util.concurrent.atomic.AtomicLong;
  * The element is not counted in the size of the structure.
  */
 
-interface TimeProvider {
+interface TimeProviderInf {
     long getMillis();
 }
 
 public class CachingDataStructure {
 
     private int maxSize;
-    private TimeProvider timeProvider;
+    private TimeProviderInf timeProviderInf;
 
     private TreeMap<Long, String> timeMap;
     private Map<String, String> dataMap;
     private long ttl = 0;
     private static final long OFFSET = 0;
 
-    CachingDataStructure(TimeProvider timeProvider, int maxSize) {
-        this.timeProvider = timeProvider;
+    CachingDataStructure(TimeProviderInf timeProviderInf, int maxSize) {
+        this.timeProviderInf = timeProviderInf;
         this.maxSize = maxSize;
         timeMap = new TreeMap<>();
         dataMap = new HashMap<>(maxSize);
-        this.ttl = timeProvider.getMillis() + OFFSET;
+        this.ttl = timeProviderInf.getMillis() + OFFSET;
     }
 
     public void put(String key, String value, long timeToLeaveInMilliseconds) {

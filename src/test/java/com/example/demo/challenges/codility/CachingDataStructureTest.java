@@ -1,7 +1,5 @@
 package com.example.demo.challenges.codility;
 
-import com.example.demo.service.GreetingService;
-import com.example.demo.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +22,7 @@ public class CachingDataStructureTest {
     private HashMap<String, String> dataTestMap;
     private
     @Mock
-    TimeProvider timeProvider;
+    TimeProviderInf timeProviderInf;
     private static final int MAX_SIZE = 10;
     List<String> keyList;
     List<String> valueList;
@@ -80,8 +78,8 @@ public class CachingDataStructureTest {
 
     @Test
     public void shouldReplaceElementWithTheSameKeyAndSmallerTTL() {
-        when(timeProvider.getMillis()).thenReturn(10L);
-        cachingDataStructure = new CachingDataStructure(timeProvider, MAX_SIZE);
+        when(timeProviderInf.getMillis()).thenReturn(10L);
+        cachingDataStructure = new CachingDataStructure(timeProviderInf, MAX_SIZE);
         String key = "testKey";
         String value = "testValue";
         long ttl = 10000L;
@@ -97,12 +95,12 @@ public class CachingDataStructureTest {
 
     @Test
     public void shouldNotAcceptNegativeTimeToLeave() {
-        when(timeProvider.getMillis()).thenReturn(10L);
+        when(timeProviderInf.getMillis()).thenReturn(10L);
         String key = "test";
         String value = "value";
         long ttl = -1L;
 
-        cachingDataStructure = new CachingDataStructure(timeProvider, MAX_SIZE);
+        cachingDataStructure = new CachingDataStructure(timeProviderInf, MAX_SIZE);
 //        cachingDataStructure.put(key, value, ttl);
 //        assertThrows(IllegalArgumentException());
         assertThrows(IllegalArgumentException.class, () -> cachingDataStructure.put(key, value, ttl));

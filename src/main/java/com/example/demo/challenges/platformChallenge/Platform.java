@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Problem: Find the minimum number of platform required to accommodate the given arrival and departure timings in a station.
@@ -30,13 +29,13 @@ public class Platform {
         departurelList.add(LocalTime.parse("19:45"));
         departurelList.add(LocalTime.parse("17:10"));
 
-        List<Train> trainList = new ArrayList<>();
-        trainList.add(new Train(LocalTime.parse("20:00"), LocalTime.parse("23:55")));
-        trainList.add(new Train(LocalTime.parse("12:00"), LocalTime.parse("18:45")));
-        trainList.add(new Train(LocalTime.parse("15:15"), LocalTime.parse("17:55")));
-        trainList.add(new Train(LocalTime.parse("18:30"), LocalTime.parse("19:45")));
-        trainList.add(new Train(LocalTime.parse("13:45"), LocalTime.parse("17:10")));
-        log.info("trainList : {} ", trainList);
+//        List<Train> trainList = new ArrayList<>();
+//        trainList.add(new Train(LocalTime.parse("20:00"), LocalTime.parse("23:55")));
+//        trainList.add(new Train(LocalTime.parse("12:00"), LocalTime.parse("18:45")));
+//        trainList.add(new Train(LocalTime.parse("15:15"), LocalTime.parse("17:55")));
+//        trainList.add(new Train(LocalTime.parse("18:30"), LocalTime.parse("19:45")));
+//        trainList.add(new Train(LocalTime.parse("13:45"), LocalTime.parse("17:10")));
+//        log.info("trainList : {} ", trainList);
 
         findMinPlatforms(arrivalList, departurelList);
     }

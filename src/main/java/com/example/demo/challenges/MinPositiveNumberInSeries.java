@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 /**
  * Find the smallest positive integer that does not occur in a given sequence.
  * 0 is to be excluded.
- *
+ * <p>
  * eg.
  * {1, 3, 5} -> 2
  * {-1, -3, -2, 0} -> 1
@@ -32,6 +32,43 @@ public class MinPositiveNumberInSeries {
         findMinNo(new int[]{-1, -3, 1});
         findMinNo(new int[]{-1, -3, 5});
 
+        chatGptFindSmallestMissingPositive(A);
+        chatGptFindSmallestMissingPositive(new int[]{1, 3, 5});
+        chatGptFindSmallestMissingPositive(new int[]{-1, -3, -2, 0});
+        chatGptFindSmallestMissingPositive(new int[]{-1, -3, -2, 0, 2});
+        chatGptFindSmallestMissingPositive(new int[]{-1, -3, -2});
+        chatGptFindSmallestMissingPositive(new int[]{-1, -3, 2});
+        chatGptFindSmallestMissingPositive(new int[]{-1, -3, 1});
+        chatGptFindSmallestMissingPositive(new int[]{-1, -3, 5});
+    }
+
+
+    /**
+     * Explanation:
+     * 1. First, we sort the given sequence in ascending order using Arrays.sort().
+     * 2. We initialize smallestMissing to 1, which is the smallest positive integer that we are looking for.
+     * 3. We then iterate through the sorted array. If the current element is equal to smallestMissing,
+     * it means the element is present in the sequence, so we increment smallestMissing to check the next positive integer.
+     * 4. Once we find the first missing positive integer, the loop will stop, and we return smallestMissing.
+     *
+     * @param nums
+     * @return
+     */
+    public static int chatGptFindSmallestMissingPositive(int[] nums) {
+        Arrays.sort(nums);
+
+        int smallestMissing = 1;
+
+        for (int num : nums) {
+            log.info("\t num ==> {}",num);
+            if (num == smallestMissing) {
+                smallestMissing++;
+            }else{
+                break;
+            }
+        }
+        log.info("chatGptFindSmallestMissingPositive({}) :: minNum: {}", nums, smallestMissing);
+        return smallestMissing;
     }
 
     public static void findMinNo(int[] A) {

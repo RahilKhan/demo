@@ -1,7 +1,9 @@
 /**
  * 
  */
-package com.example.demo.designpattern.command;
+package com.example.demo.designpattern.command.lightcommand;
+
+import com.example.demo.designpattern.command.Command;
 
 /**
  * @author Rahil_Khan

@@ -17,4 +17,7 @@ public class Garage {
 	public void openDoor() {
 		logger.info("Garage door opened");
 	}
+	public void closeDoor() {
+		logger.info("Garage door closed");
+	}
 }

@@ -17,6 +17,11 @@ public class PrintNumbers {
         t1.start();
         t2.start();
         t3.start();
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println(i + " % 3 = " + i % 3);
+        }
+
     }
 
     public synchronized void printNumber(int threadId) {

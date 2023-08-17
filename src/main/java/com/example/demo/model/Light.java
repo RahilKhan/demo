@@ -13,4 +13,9 @@ public class Light {
 	public void on() {
 		logger.info("Light is switched on");
 	}
+
+	public void off() {
+		logger.info("Light is switched off");
+	}
+
 }

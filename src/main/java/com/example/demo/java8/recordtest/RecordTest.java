@@ -29,6 +29,11 @@ public class RecordTest {
         unqRecList.add(uniqueRecords);
         unqRecList.add(uniqueRecords);
 
+        uniqueRecords = new UniqueRecords("cluster2", "sku2", "countryCode2");
+        unqRecList.add(uniqueRecords);
+        unqRecList.add(uniqueRecords);
+        unqRecList.add(uniqueRecords);
+
         var idList = unqRecList.stream().collect(Collectors.toList());
         var idSet = unqRecList.stream().collect(Collectors.toSet());
 

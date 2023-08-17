@@ -42,7 +42,17 @@ public class StreamListToMap {
 
 		float avgPrice = 0;
 		System.out.println("\navgPrice : " + avgPrice);
-		
+
+		Object obj = new Object();
+		if(obj instanceof Employee){
+			Employee emp =  (Employee)obj;
+			emp.getSalary();
+		}
+
+		if( obj instanceof Employee emp){
+			emp.getSalary();
+		}
+
 		
 	}
 

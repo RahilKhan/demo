@@ -10,4 +10,5 @@ package com.example.demo.designpattern.command;
 public interface Command {
 
 	public void execute();
+	public void unExecute();
 }

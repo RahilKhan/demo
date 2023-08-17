@@ -1,4 +1,4 @@
-package com.example.demo.java8;
+package com.example.demo.java8.functions;
 
 import java.util.function.Predicate;
 

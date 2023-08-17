@@ -41,7 +41,12 @@ public class StudentRestController {
     return newStudent.toString();
   }
 
-  
+  @PostMapping(path = "/createStudents", produces = MediaType.TEXT_PLAIN_VALUE)
+  public Student createStudent(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String courseOfStudies) {
+    Student newStudent = studentService.create(firstName, lastName, courseOfStudies);
+    return newStudent;
+  }
+
   @GetMapping(path = "/getCandidate/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
   public String getCandidate(@PathVariable Long id) {
     Optional<Student> student = candidateService.find(id);

@@ -30,6 +30,8 @@ public class RegularExpressionHandler {
 	    matchedGrp = datePtrn.matcher(Constants.NAME_SINGLE_HYPEN_DATE);
 		if(matchedGrp.find()) {
 			System.out.println("matchedGrp.group(0) : " + matchedGrp.group(0)); // whole matched expression
+			System.out.println("matchedGrp.group() : " + matchedGrp.group());
+			System.out.println("matchedGrp.groupCount() : " + matchedGrp.groupCount());
 		}
 	    
 	    

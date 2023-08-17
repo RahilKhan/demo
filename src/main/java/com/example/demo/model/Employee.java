@@ -17,6 +17,10 @@ public class Employee {
     private String department;
     private int yearOfJoining;
 
+//    public Employee() {
+//
+//    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
