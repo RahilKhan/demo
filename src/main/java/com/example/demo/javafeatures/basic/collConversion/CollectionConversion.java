@@ -10,6 +10,20 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+
+/**
+ * Array ->
+ *      List<Employee> employeeList = Arrays.stream(empArr).toList();
+ *      Set<Employee> employeeSet   = Arrays.stream(empArr).collect(Collectors.toSet());
+ * <p>
+ * List  ->
+ *      Employee[] employeeArr = employeeList.stream().toArray(Employee[]::new);
+ *      Set employeeSet        = employeeList.stream().collect(Collectors.toSet());
+ * <p>
+ * Set   ->
+ *      List<Employee> employeeList = employeeSet.stream().toList();
+ *      Employee[] employeesArray   = employeeSet.stream().toArray(Employee[]::new);
+ */
 public class CollectionConversion {
 
     public static void main(String... args) {
