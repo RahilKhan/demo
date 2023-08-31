@@ -1,4 +1,4 @@
-package com.example.demo.javafeatures.collConversion;
+package com.example.demo.javafeatures.basic.collConversion;
 
 import com.example.demo.dummy.DummyEmployee;
 import com.example.demo.model.Employee;

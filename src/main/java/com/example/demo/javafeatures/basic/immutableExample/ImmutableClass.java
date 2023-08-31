@@ -1,4 +1,4 @@
-package com.example.demo.javafeatures.basic;
+package com.example.demo.javafeatures.basic.immutableExample;
 
 import com.example.demo.model.Address;
 import com.example.demo.model.Profession;
