@@ -93,7 +93,7 @@ public class CollectionConversion {
         System.out.println("\n-------Conversion Set -> Array-------");
 
         /** Best approach */
-        Employee[] employeesArray =  employeeSet.stream().toArray(Employee[] ::new);
+        Employee[] employeesArray = employeeSet.stream().toArray(Employee[]::new);
         System.out.println("\t employeesArray : " + employeesArray);
 
         Employee[] empArray = employeeSet.toArray(new Employee[0]);
@@ -103,7 +103,6 @@ public class CollectionConversion {
         /* Method reference style*/
         empArray = employeeSet.toArray(Employee[]::new);
         System.out.println("\t empArray : " + empArray);
-
-
     }
+
 }
