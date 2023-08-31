@@ -68,6 +68,14 @@ public class CodingExercise {
                 .skip(1).findFirst();
         System.out.println("Inline -> Employee with second highest salary : " + emp.get());
 
+        Map employeeMap = empList.stream().collect(Collectors
+                        .toMap(Employee::getSalary,
+                                Function.identity(),
+                                (a, b) -> a,
+                                () -> new TreeMap<>(Comparator.comparing(Double::doubleValue).reversed())));
+
+        System.out.println("TreeMap -> : " + employeeMap);
+
         employee = empList.stream().collect(Collectors
                 .toMap(Employee::getSalary,
                         Function.identity(),

@@ -14,25 +14,25 @@ import java.util.stream.Stream;
 /**
  * Sorting:
  * #1. List sorting -> list.sort(...)
- *      empList.sort(employeeNameComparator)
- *      employeeList.sort(Comparator.comparing(Employee::getName));
- *      employeeList.sort(Comparator.comparing(Employee::getName).reversed());
- *
+ * empList.sort(employeeNameComparator)
+ * employeeList.sort(Comparator.comparing(Employee::getName));
+ * employeeList.sort(Comparator.comparing(Employee::getName).reversed());
+ * <p>
  * #2  Collection sorting -> Collection.sort(...)
- *      e.g Collection.sort(<list/array>, customComparator)
- *          Collections.sort(employeeList, Comparator.comparing(Employee::getName));
- *          Collections.sort(employeeList, Comparator.comparing(Employee::getName).reversed());
- *
+ * e.g Collection.sort(<list/array>, customComparator)
+ * Collections.sort(employeeList, Comparator.comparing(Employee::getName));
+ * Collections.sort(employeeList, Comparator.comparing(Employee::getName).reversed());
+ * <p>
  * #3  Array sorting -> Arrays.sort()...
- *      e.g Arrays.sort(empArr, employeeNameComparator);
- *          Arrays.sort(empArr, employeeNameComparator.reversed());
- *
- * #4
+ * e.g #1. Arrays.sort(empArr, employeeNameComparator);
+ * Arrays.sort(empArr, employeeNameComparator.reversed());
+ * #2. Arrays.sort(<primitive Array>);
+ * Arrays.sort(intArr);
+ * #4 Stream ->
  * List<Employee> empList = (List<Employee>) list.stream().sorted(Comparator.comparing(Employee::getName))
- * 				 .collect(Collectors.toList());
+ * .collect(Collectors.toList());
  */
 public class ComparingExample {
-
 
 
     public static void main(String... args) {
@@ -53,6 +53,18 @@ public class ComparingExample {
 
         System.out.println("\n------------sortingEmployeeListReversed------------");
         sortingEmployeeListReversed();
+
+        Employee[] empArr = DummyEmployee.getDummyEmployeeArray();
+//        Arrays.sort(empArr);
+//        System.out.println("Arrays.sort(empArr) : " + empArr);
+
+        Arrays.sort(empArr, ComparingExample.SalaryComparator);
+        System.out.println("Arrays.sort(empArr, ComparingExample.SalaryComparator) : ");
+        Arrays.stream(empArr).forEach(System.out::println);
+
+        Arrays.sort(empArr, ageComaprator);
+        System.out.println("Arrays.sort(empArr, ageComaprator) : ");
+        Arrays.stream(empArr).forEach(System.out::println);
     }
 
 
@@ -90,7 +102,8 @@ public class ComparingExample {
     /**
      * Invasive strategy:
      * Requires modifying original class.
-     * Orignal Empl class needs to implement Comparable*/
+     * Orignal Empl class needs to implement Comparable
+     */
     public static void sortingEmployeeArrayByNaturalOrder() {
         List<Empl> employees = DummyEmployee.getDummyEmpl();
         Empl[] empArr = employees.toArray(Empl[]::new);
@@ -99,8 +112,6 @@ public class ComparingExample {
         Arrays.sort(empArr, empNameComparator);
 
         Stream.of(empArr).map(Empl::getName).forEach(System.out::println);
-
-
     }
 
     public static void sortingEmployeeArrayByReverseOrder() {
@@ -109,9 +120,7 @@ public class ComparingExample {
 
         Comparator<Empl> empNameComparator = Comparator.<Empl>reverseOrder();
         Arrays.sort(empArr, empNameComparator);
-
         Stream.of(empArr).map(Empl::getName).forEach(System.out::println);
-
 
         employees.add(null);
         employees.add(null);
@@ -120,8 +129,6 @@ public class ComparingExample {
         Comparator<Empl> empNameComparatorNullsFirst = Comparator.nullsFirst(empNameComparator);
         Arrays.sort(empArr1, empNameComparatorNullsFirst);
         Stream.of(empArr1).forEach(System.out::println);
-
-
     }
 
     public static void sortingEmployeeList() {
@@ -144,5 +151,19 @@ public class ComparingExample {
 
     }
 
+    /**
+     * Comparator to sort employees list or array in order of Salary
+     */
+    public static Comparator<Employee> ageComaprator = new Comparator<Employee>() {
+        @Override
+        public int compare(Employee o1, Employee o2) {
+            return o1.getAge() - o2.getAge();
+        }
+    };
+
+    /**
+     * Comparator to sort employees list or array in order of Salary
+     */
+    public static Comparator<Employee> SalaryComparator = (e1, e2) -> (int) (e1.getSalary() - e2.getSalary());
 
 }
