@@ -1,7 +1,11 @@
 package com.example.demo.model;
 
+import lombok.ToString;
+
+@ToString
 public class Address {
     private final String streat;
+    private String mutableStr;
     private final int zipcode;
 
     public Address(String street, int zipcode) {
@@ -13,8 +17,8 @@ public class Address {
         return streat;
     }
 
-//    public void setStreet(String street) {
-//        this.street = street;
+//    public void setStreet(String streat) {
+//        this.streat = streat;
 //    }
 
     public int getZipcode() {
@@ -25,11 +29,13 @@ public class Address {
 //        this.zipcode = zipcode;
 //    }
 
-    @Override
-    public String toString() {
-        return "Address{" +
-                "street='" + streat + '\'' +
-                ", zipcode=" + zipcode +
-                '}';
+
+    public void setMutableStr(String mutableStr) {
+        this.mutableStr = mutableStr;
     }
+
+    public String getMutableStr(){
+        return this.mutableStr;
+    }
+
 }

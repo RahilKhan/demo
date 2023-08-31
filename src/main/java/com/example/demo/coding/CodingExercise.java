@@ -3,7 +3,6 @@ package com.example.demo.coding;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.example.demo.dummy.DummyEmployee;
 import com.example.demo.model.Employee;
@@ -44,7 +43,7 @@ public class CodingExercise {
     /* 2n highest salary */
     private static void SecondHighestSalary() {
 
-        List<Employee> empList = DummyEmployee.getDummyEmployee();
+        List<Employee> empList = DummyEmployee.getDummyEmployeeList();
 //		empList.stream().sorted(Comparator.comparingDouble(Employee::getSalary))
 
         System.out.println("--------------sortedEmployees----------------");

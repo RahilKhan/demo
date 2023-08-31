@@ -69,7 +69,7 @@ public class ComparingExample {
 
 
     public static void sortingEmployeeArray() {
-        List<Employee> employees = DummyEmployee.getDummyEmployee();
+        List<Employee> employees = DummyEmployee.getDummyEmployeeList();
 
         Comparator<Employee> employeeNameComparator
                 = Comparator.comparing(Employee::getName);
@@ -85,7 +85,7 @@ public class ComparingExample {
     }
 
     public static void sortingEmployeeArrayCustomSort() {
-        List<Employee> employees = DummyEmployee.getDummyEmployee();
+        List<Employee> employees = DummyEmployee.getDummyEmployeeList();
 
         Comparator<Employee> employeeNameComparator
                 = Comparator.comparing(Employee::getName, (a, b) -> {
@@ -133,11 +133,11 @@ public class ComparingExample {
 
     public static void sortingEmployeeList() {
 
-        List<Employee> employeeList = DummyEmployee.getDummyEmployee();
+        List<Employee> employeeList = DummyEmployee.getDummyEmployeeList();
         employeeList.sort(Comparator.comparing(Employee::getName));
         employeeList.stream().map(Employee::getName).forEach(System.out::println);
 
-        employeeList = DummyEmployee.getDummyEmployee();
+        employeeList = DummyEmployee.getDummyEmployeeList();
         Collections.sort(employeeList, Comparator.comparing(Employee::getName).reversed());
         employeeList.stream().map(Employee::getName).forEach(System.out::println);
 
@@ -145,7 +145,7 @@ public class ComparingExample {
 
     public static void sortingEmployeeListReversed() {
 
-        List<Employee> employeeList = DummyEmployee.getDummyEmployee();
+        List<Employee> employeeList = DummyEmployee.getDummyEmployeeList();
         employeeList.sort(Comparator.comparing(Employee::getName).reversed());
         employeeList.stream().map(Employee::getName).forEach(System.out::println);
 

@@ -54,7 +54,7 @@ public class CollectionConversion {
 
     public static void listConversion() {
 
-        List<Employee> employeeList = DummyEmployee.getDummyEmployee();
+        List<Employee> employeeList = DummyEmployee.getDummyEmployeeList();
 
         System.out.println("\n-------Conversion List -> Array-------");
         /** Best approach */

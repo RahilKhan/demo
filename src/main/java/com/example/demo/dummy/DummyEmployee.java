@@ -3,9 +3,7 @@
  */
 package com.example.demo.dummy;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +17,10 @@ import com.example.demo.model.Employee;
  */
 public class DummyEmployee {
 
-    public static List<Employee> getDummyEmployee() {
+    public static Employee getDummyEmployee() {
+        return new Employee(111, "Jiya Brein", 25000.0, 32, "Female", "HR", 2011);
+    }
+    public static List<Employee> getDummyEmployeeList() {
         List<Employee> employeeList = new ArrayList<>();
 
         employeeList.add(new Employee(111, "Jiya Brein", 25000.0, 32, "Female", "HR", 2011));
