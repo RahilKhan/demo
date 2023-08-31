@@ -1,4 +1,4 @@
-package com.example.demo.javafeatures.externalizationDemo;
+package com.example.demo.javafeatures.serialization.externalizationDemo;
 
 import java.io.Externalizable;
 import java.io.IOException;

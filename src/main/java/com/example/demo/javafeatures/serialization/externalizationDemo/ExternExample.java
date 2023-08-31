@@ -1,4 +1,4 @@
-package com.example.demo.javafeatures.externalizationDemo;
+package com.example.demo.javafeatures.serialization.externalizationDemo;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -29,7 +29,6 @@ public class ExternExample {
             FileInputStream fis = new FileInputStream(FILEPATH);
             ObjectInputStream ois = new ObjectInputStream(fis);
             newCar = (Car) ois.readObject();
-
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {

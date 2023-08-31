@@ -1,4 +1,4 @@
-package com.example.demo.java8;
+package com.example.demo.javafeatures.java8;
 
 import java.util.ArrayList;
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package com.example.demo.java8.recordtest;
+package com.example.demo.javafeatures.java8.recordtest;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package com.example.demo.java8.concurrency;
+package com.example.demo.javafeatures.java8.concurrency;
 
 import lombok.extern.slf4j.Slf4j;
 

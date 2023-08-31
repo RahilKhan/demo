@@ -1,4 +1,4 @@
-package com.example.demo.java8;
+package com.example.demo.javafeatures.java8;
 
 import com.example.demo.dummy.DummyEmployee;
 import com.example.demo.model.Empl;
@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 /**
  * Sorting:
  * #1. List sorting -> list.sort(...)
- *      empList.sort( empList, employeeNameComparator)
+ *      empList.sort(employeeNameComparator)
  *      employeeList.sort(Comparator.comparing(Employee::getName));
  *      employeeList.sort(Comparator.comparing(Employee::getName).reversed());
  *
@@ -26,6 +26,10 @@ import java.util.stream.Stream;
  * #3  Array sorting -> Arrays.sort()...
  *      e.g Arrays.sort(empArr, employeeNameComparator);
  *          Arrays.sort(empArr, employeeNameComparator.reversed());
+ *
+ * #4
+ * List<Employee> empList = (List<Employee>) list.stream().sorted(Comparator.comparing(Employee::getName))
+ * 				 .collect(Collectors.toList());
  */
 public class ComparingExample {
 

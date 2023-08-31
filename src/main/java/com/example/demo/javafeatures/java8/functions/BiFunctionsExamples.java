@@ -1,4 +1,4 @@
-package com.example.demo.java8.functions;
+package com.example.demo.javafeatures.java8.functions;
 
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
