@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
  *      Set employeeSet        = employeeList.stream().collect(Collectors.toSet());
  * <p>
  * Set   ->
- *      List<Employee> employeeList = employeeSet.stream().toList();
  *      Employee[] employeesArray   = employeeSet.stream().toArray(Employee[]::new);
+ *      List<Employee> employeeList = employeeSet.stream().toList();
  */
 public class CollectionConversion {
 
