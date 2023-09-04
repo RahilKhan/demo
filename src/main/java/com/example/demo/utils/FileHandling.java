@@ -29,9 +29,9 @@ public class FileHandling {
 			log.debug("Directory not exists, creating now");
 			success = directory.mkdir();
 			if (success) {
-				log.debug("Successfully created new directory : %s%n", dir);
+				log.debug("Successfully created new directory : {}", dir);
 			} else {
-				log.debug("Failed to create new directory: %s%n", dir);
+				log.debug("Failed to create new directory: {}", dir);
 			}
 		}
 

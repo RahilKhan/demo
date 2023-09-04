@@ -6,10 +6,8 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.0</version> 
-        <!-- <version>2.6.7</version> -->
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-	<!-- <version>2.7.0</version> -->
 	<groupId>com.dummy</groupId>
 	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -21,7 +19,6 @@
 		<mockitoversion>4.6.0</mockitoversion>
 
 		<!--BEGIN : pog-setup-guide -->
-<!--		<tetris-log.version>0.0.6</tetris-log.version>-->
 		<azure-keyvault-secrets.version>4.4.2</azure-keyvault-secrets.version>
 		<azure-storage-blob.version>12.16.1</azure-storage-blob.version>
 		<spring-cloud.version>2021.0.1</spring-cloud.version>
@@ -140,12 +137,7 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-		<!-- 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		 -->
+
 		<!-- Veracode bug fix -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -183,11 +175,6 @@
 			<artifactId>commons-io</artifactId>
 			<version>${commons-io.version}</version>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>com.cantire.tetris</groupId>-->
-<!--			<artifactId>tetris-log</artifactId>-->
-<!--			<version>${tetris-log.version}</version>-->
-<!--		</dependency>-->
 		<dependency>
 			<groupId>org.owasp.encoder</groupId>
 			<artifactId>encoder</artifactId>
@@ -219,34 +206,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>	
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>${tetris-lombok.version}</version>
-			<scope>provided</scope>
-		</dependency>			
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>com.google.guava</groupId>
-					<artifactId>guava</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.thoughtworks.xstream</groupId>
-					<artifactId>xstream</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.bouncycastle</groupId>
-					<artifactId>bcprov-jdk15on</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.bouncycastle</groupId>
-					<artifactId>bcpkix-jdk15on</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>			
+
 		<dependency>
 			<groupId>com.azure</groupId>
 			<artifactId>azure-security-keyvault-secrets</artifactId>
