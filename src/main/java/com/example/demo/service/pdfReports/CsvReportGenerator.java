@@ -32,8 +32,8 @@ public class CsvReportGenerator {
 		CsvReportGenerator csvReportGenerator = new CsvReportGenerator(csvWrtr);
 		try {
 			PogGuide pogGuide = csvReportGenerator.buildCsv();
-			TetrisLogger.debug("CSV pogGuide : " + pogGuide.toString());
-			TetrisLogger.debug("CSV pogGuide.getByteArrayOutputStream : " + pogGuide.getByteArrayOutputStream());
+			log.debug("CSV pogGuide : " + pogGuide.toString());
+			log.debug("CSV pogGuide.getByteArrayOutputStream : " + pogGuide.getByteArrayOutputStream());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

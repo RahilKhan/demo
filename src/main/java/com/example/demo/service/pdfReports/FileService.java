@@ -7,12 +7,11 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
-
-import com.cantire.tetris.log.TetrisLogger;
 
 import com.example.demo.dto.PogGuide;
 import com.example.demo.javafeatures.exception.FileGenerationException;
@@ -31,7 +30,7 @@ import java.io.IOException;
  * @author Rahil_Khan
  *
  */
-
+@Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class FileService {
@@ -64,7 +63,7 @@ public class FileService {
 		try {
 			fos = new FileOutputStream(Constants.POG_GUIDE_ZIP_FILE);
 		} catch (FileNotFoundException fnfe) {
-			TetrisLogger.error("TetrisService.tetrisFilebuilder() - Exception occured while creating zip file -> "
+			log.error("TetrisService.tetrisFilebuilder() - Exception occured while creating zip file -> "
 					+ fnfe.getMessage());
 			fnfe.printStackTrace();
 			throw new FileGenerationException(fnfe);
@@ -88,7 +87,7 @@ public class FileService {
 			zipOutStream.close();
 			fos.close();
 		} catch (IOException ioe) {
-			TetrisLogger.error("TetrisService.tetrisFilebuilder() - Exception occured while creating zip file -> "
+			log.error("TetrisService.tetrisFilebuilder() - Exception occured while creating zip file -> "
 					+ ioe.getMessage());
 			ioe.printStackTrace();
 			throw new FileGenerationException(ioe);

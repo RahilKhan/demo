@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cantire.tetris.log.TetrisLogger;
 import com.example.demo.dto.Options;
 import com.example.demo.dto.PogGuide;
 import com.example.demo.dummy.DummyReportModel;
@@ -24,6 +24,7 @@ import com.example.demo.utils.HtmlToPdfWriter;
 
 import lombok.RequiredArgsConstructor;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PdfReportGenerator {
@@ -64,17 +65,17 @@ public class PdfReportGenerator {
 					.collect(Collectors.toList());
 			htmlPages.addAll(includeReportHtml);
 			boolean includeReportHtmlStatus = createHtmlFile(includeReportHtml.toString(), prodPerfFileName);
-			TetrisLogger.debug("includeReportHtml - includeReportHtmlStatus : " + includeReportHtmlStatus);
+			log.debug("includeReportHtml - includeReportHtmlStatus : " + includeReportHtmlStatus);
 
 			String prodExclFileName = pdfDestination + "\\" + pogExclHtmlFile;
 			List<ReportModel> excludeReportModels = DummyReportModel.getReportModelList(Options.EXCLUDE);
-			TetrisLogger.debug("excludeReportModels : " + excludeReportModels.toString());
+			log.debug("excludeReportModels : " + excludeReportModels.toString());
 			List<String> excludeReportHtml = excludeReportModels.stream()
 					.map(model -> templateProcessor.process(model, "productExcludeReport"))
 					.collect(Collectors.toList());
 			htmlPages.addAll(excludeReportHtml);
 			boolean excludeReportHtmlStatus = createHtmlFile(excludeReportHtml.toString(), prodExclFileName);
-			TetrisLogger.debug("excludeReportModels - excludeReportHtmlStatus : " + excludeReportHtmlStatus);
+			log.debug("excludeReportModels - excludeReportHtmlStatus : " + excludeReportHtmlStatus);
 
 			String pogFixSummaryFile = pdfDestination + "\\" + pogFixSummaryHtmlFile;
 			List<ReportModel> fixtureSummaryListModel = DummyReportModel.getReportModelList(Options.FIXTURE_SUMMARY);
@@ -83,7 +84,7 @@ public class PdfReportGenerator {
 	                .collect(Collectors.toList());
 	        htmlPages.addAll(fixtureSummaryHtml);
 			boolean fixtureSummaryHtmlStatus = createHtmlFile(fixtureSummaryHtml.toString(), pogFixSummaryFile);
-			TetrisLogger.debug("fixtureSummaryListModel - fixtureSummaryHtmlStatus : " + fixtureSummaryHtmlStatus);
+			log.debug("fixtureSummaryListModel - fixtureSummaryHtmlStatus : " + fixtureSummaryHtmlStatus);
 			
 			
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -91,7 +92,7 @@ public class PdfReportGenerator {
 //			htmlToPdfWriter.write(pdfDestination, htmlPages);
 
 			pogGuide = new PogGuide(pogGuideFileName, outputStream);
-//	        TetrisLogger.debug("PdfReportGenerator : build - pogGuide - " + pogGuide);	
+//	        log.debug("PdfReportGenerator : build - pogGuide - " + pogGuide);
 
 		}
 
@@ -163,15 +164,15 @@ public class PdfReportGenerator {
 		File directory = new File(dir);
 
 		if (directory.exists()) {
-			TetrisLogger.debug("Directory already exists ...");
+			log.debug("Directory already exists ...");
 			success = true;
 		} else {
-			TetrisLogger.debug("Directory not exists, creating now");
+			log.debug("Directory not exists, creating now");
 			success = directory.mkdir();
 			if (success) {
-				TetrisLogger.debug("Successfully created new directory : %s%n", dir);
+				log.debug("Successfully created new directory : %s%n", dir);
 			} else {
-				TetrisLogger.debug("Failed to create new directory: %s%n", dir);
+				log.debug("Failed to create new directory: %s%n", dir);
 			}
 		}
 

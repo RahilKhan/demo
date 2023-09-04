@@ -3,13 +3,14 @@ package com.example.demo.dummy;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cantire.tetris.log.TetrisLogger;
 import com.example.demo.model.FixtureAssembly;
 import com.example.demo.dto.Options;
 import com.example.demo.model.ProductExcludeReport;
 import com.example.demo.model.ProductIncludeReport;
 import com.example.demo.model.ReportModel;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class DummyReportModel {
 
     public static final String PRODUCT_PERFORMANCE_REPORT = "Product Performance Report / Donnees Sur Les Ventes";
@@ -90,7 +91,7 @@ public class DummyReportModel {
 	}
 
 	public static List<?> getProductExcludeReportList() {
-		TetrisLogger.debug("DummyReportModel.getProductExcludeReportList()");
+		log.debug("DummyReportModel.getProductExcludeReportList()");
 
 		List<ProductExcludeReport> productExcludeReportList = new ArrayList<>();
 		ProductExcludeReport productExcludeReport = new ProductExcludeReport();
@@ -161,7 +162,7 @@ public class DummyReportModel {
 	}
 
 	public static List<?> getProductPerformanceReportList() {
-		TetrisLogger.debug("DummyReportModel.getProductPerformanceReportList()");
+		log.debug("DummyReportModel.getProductPerformanceReportList()");
 		
 		List<ProductIncludeReport> productIncludeReportList = new ArrayList<>();
 		ProductIncludeReport productIncludeReport = new ProductIncludeReport();

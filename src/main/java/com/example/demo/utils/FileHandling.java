@@ -2,13 +2,14 @@ package com.example.demo.utils;
 
 import java.io.File;
 
-import com.cantire.tetris.log.TetrisLogger;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class provide services related to file handling
  * 
  * @author Rahil_Khan
  */
+@Slf4j
 public class FileHandling {
 
 	/**
@@ -22,15 +23,15 @@ public class FileHandling {
 		File directory = new File(dir);
 
 		if (directory.exists()) {
-			TetrisLogger.debug("Directory already exists ...");
+			log.debug("Directory already exists ...");
 			success = true;
 		} else {
-			TetrisLogger.debug("Directory not exists, creating now");
+			log.debug("Directory not exists, creating now");
 			success = directory.mkdir();
 			if (success) {
-				TetrisLogger.debug("Successfully created new directory : %s%n", dir);
+				log.debug("Successfully created new directory : %s%n", dir);
 			} else {
-				TetrisLogger.debug("Failed to create new directory: %s%n", dir);
+				log.debug("Failed to create new directory: %s%n", dir);
 			}
 		}
 

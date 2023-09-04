@@ -17,11 +17,11 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>19</java.version>
+		<java.version>17</java.version>
 		<mockitoversion>4.6.0</mockitoversion>
 
 		<!--BEGIN : pog-setup-guide -->
-		<tetris-log.version>0.0.6</tetris-log.version>
+<!--		<tetris-log.version>0.0.6</tetris-log.version>-->
 		<azure-keyvault-secrets.version>4.4.2</azure-keyvault-secrets.version>
 		<azure-storage-blob.version>12.16.1</azure-storage-blob.version>
 		<spring-cloud.version>2021.0.1</spring-cloud.version>
@@ -30,17 +30,17 @@
 		<jsoup.version>1.13.1</jsoup.version>
 		<html2pdf.version>4.0.1</html2pdf.version>
 		<gson.version>2.9.0</gson.version>
-		<tetris-thymeleaf.version>3.1.0.M1</tetris-thymeleaf.version>
-		<tetris-lombok.version>1.18.22</tetris-lombok.version>
+		<thymeleaf.version>3.1.0.M1</thymeleaf.version>
+		<lombok.version>1.18.22</lombok.version>
 		<azure-identity.version>1.5.1</azure-identity.version>
 		<commons-io.version>2.11.0</commons-io.version>
 		<google-guava.version>31.1-jre</google-guava.version>
 		<opencsv.version>5.6</opencsv.version>
 		<spring-beans.version>5.3.20</spring-beans.version>
-		<tetris-maven-surefire-plugin.version>2.22.2</tetris-maven-surefire-plugin.version>
-		<tetris-maven-failsafe-plugin.version>2.22.2</tetris-maven-failsafe-plugin.version>
+		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+		<maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
 		<jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
-		<tetris-maven-compiler-plugin.version>3.8.1</tetris-maven-compiler-plugin.version>
+		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<log4j2.version>2.17.1</log4j2.version>
 		<logback.version>1.2.9</logback.version>
 		<netty.version>4.1.77.Final</netty.version>
@@ -83,7 +83,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>${tetris-lombok.version}</version>
+			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -176,18 +176,18 @@
 		<dependency>
 			<groupId>org.thymeleaf</groupId>
 			<artifactId>thymeleaf</artifactId>
-			<version>${tetris-thymeleaf.version}</version>
+			<version>${thymeleaf.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>${commons-io.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.cantire.tetris</groupId>
-			<artifactId>tetris-log</artifactId>
-			<version>${tetris-log.version}</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.cantire.tetris</groupId>-->
+<!--			<artifactId>tetris-log</artifactId>-->
+<!--			<version>${tetris-log.version}</version>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.owasp.encoder</groupId>
 			<artifactId>encoder</artifactId>
