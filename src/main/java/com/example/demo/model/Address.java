@@ -1,41 +1,22 @@
 package com.example.demo.model;
 
+import lombok.Getter;
 import lombok.ToString;
 
 @ToString
+@Getter
 public class Address {
-    private final String streat;
+    private final String street;
     private String mutableStr;
     private final int zipcode;
 
     public Address(String street, int zipcode) {
-        this.streat = street;
+        this.street = street;
         this.zipcode = zipcode;
     }
 
-    public String getStreat() {
-        return streat;
-    }
-
-//    public void setStreet(String streat) {
-//        this.streat = streat;
-//    }
-
-    public int getZipcode() {
-        return zipcode;
-    }
-
-//    public void setZipcode(int zipcode) {
-//        this.zipcode = zipcode;
-//    }
-
-
     public void setMutableStr(String mutableStr) {
         this.mutableStr = mutableStr;
-    }
-
-    public String getMutableStr(){
-        return this.mutableStr;
     }
 
 }

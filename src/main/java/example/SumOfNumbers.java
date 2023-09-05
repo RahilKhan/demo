@@ -19,6 +19,7 @@ public class SumOfNumbers {
 
         backtrack(candidates, result, new ArrayList<>(), 8, 0);
         log.info("{} ->- {}", candidates, result);
+
     }
 
 
