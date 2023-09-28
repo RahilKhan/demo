@@ -2,7 +2,6 @@ package com.example.demo;
 
 import com.example.demo.model.Empl;
 import com.example.demo.model.Employee;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +21,6 @@ import java.util.stream.Stream;
 ;import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.partitioningBy;
 
-@RestController(value = "Example/")
 public class ExampleList {
 //    List no -> x*100 ->sort -> reverse
 
@@ -38,12 +36,21 @@ public class ExampleList {
         Stream.generate(Math::random).limit(10).forEach(System.out::println);
 
         System.out.println("------- random.ints(50).limit(10) -------");
-//        IntStream intStream = random.ints(50);
+        IntStream intStream = random.ints(50);
         random.ints(50).limit(10).forEach(System.out::println);
+        List<Integer> integerList1 = random.ints(50,100).limit(10).boxed().toList();
+        List<Integer> integerList2 = random.ints(10,50,100).boxed().toList();
+
+        System.out.println("------- integerList1.size() : " + integerList1.size());
+        integerList1.forEach(System.out::println);
+
+        System.out.println("------- integerList2.size() : " + integerList2.size());
+        integerList2.forEach(System.out::println);
 //        Stream.generate(random::nextInt).limit(10).forEach(System.out::println);
 
         List<Integer> intListSorted = intList.stream().map(x -> x * 100).sorted().collect(Collectors.toList());
         Collections.sort(intListSorted, Collections.reverseOrder());
+        //intListSorted.sort(Collections.reverseOrder());
         System.out.println("intListSorted : " + intListSorted);
 
         List<Integer> intListSorted1 = intList.stream().map(x -> x * 100).sorted().collect(Collectors.toList());
@@ -59,13 +66,15 @@ public class ExampleList {
 
         hm.put(emp, "a");
         System.out.println("hm : " + hm);
+        System.out.println("hm.get(emp) : " + hm.get(emp));
+        //hm.get(emp) : a
 
         emp = null;
         hm.put(emp, "b");
-
         System.out.println("hm : " + hm);
-
+        //hm : {null=b, Empl(name=null, age=null, salary=null)=a}
         System.out.println("hm.get(emp) : " + hm.get(emp));
+        //hm.get(emp) : b
 
         HashSet hs = new HashSet();
         hs.add(null);
@@ -84,7 +93,6 @@ public class ExampleList {
         isSubsequence("ace", "ahbgdc");
         isSubsequence("a", "b");
         isSubsequence("b", "a");
-
 
         String s = "ace";
         String t = "ahbgdc";
@@ -162,7 +170,6 @@ public class ExampleList {
 
         Map<String, List<Employee>> deptMap = empList.stream().collect(groupingBy(e -> e.getDepartment()));
         System.out.println("deptMap : " + deptMap);
-
 
         Map<String, Map<Integer, List<Employee>>> deptAndAgeMap = empList.stream().collect(groupingBy(e -> e.getDepartment(), groupingBy(e -> e.getAge())));
         System.out.println("deptAndAgeMap : " + deptAndAgeMap);

@@ -1,8 +1,7 @@
 package com.example.demo.javafeatures.basic.immutableExample;
 
-import com.example.demo.dummy.DummyEmployee;
+import com.example.demo.model.dummy.DummyEmployee;
 import com.example.demo.model.Address;
-import com.example.demo.model.Empl;
 import com.example.demo.model.Employee;
 import com.example.demo.model.Profession;
 import lombok.extern.slf4j.Slf4j;
