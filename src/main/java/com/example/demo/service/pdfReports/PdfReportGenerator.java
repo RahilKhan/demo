@@ -14,11 +14,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.Options;
 import com.example.demo.dto.PogGuide;
-import com.example.demo.dummy.DummyReportModel;
+import com.example.demo.model.dummy.DummyReportModel;
 import com.example.demo.model.ReportModel;
 import com.example.demo.template.SavingThymeleafTemplateProcessor;
 import com.example.demo.template.TemplateProcessor;
-import com.example.demo.template.ThymeleafTemplateProcessor;
 import com.example.demo.utils.Constants;
 import com.example.demo.utils.HtmlToPdfWriter;
 

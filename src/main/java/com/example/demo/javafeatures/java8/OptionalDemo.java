@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 /**
  * @author Rahil_Khan
  * Optional is meant to be used as a return type.
- *    Trying to use it as a field type is not recommended.
+ * Trying to use it as a field type is not recommended.
  * Additionally, using Optional in a serializable class will result in a NotSerializableException.
  */
 @Slf4j
@@ -19,8 +19,9 @@ public class OptionalDemo {
         String testNullStr = null;
         String name = "test";
 
-        /** 1. Creating Optional Objects */
-        /*Throws excpetion if value inside option is null. In this case 'checkNullTestStr' */
+        /** 1. Creating Optional Objects
+         * Throws excpetion if value inside option is null. In this case 'checkNullTestStr'
+         */
         try {
             Optional<String> checkNullTestStr = Optional.of(testNullStr);
             if (checkNullTestStr.isPresent()) {
@@ -32,7 +33,7 @@ public class OptionalDemo {
 
 
         /** 2. Checking Value Presence: isPresent() and isEmpty() */
-        Optional<String> checkNull = Optional.ofNullable(name);
+        Optional<String> checkNull = Optional.ofNullable(testNullStr);
         if (checkNull.isPresent()) {
             log.info("String '{}' -> checkNull.isPresent() : checkNull is not null", name);
         } else {
@@ -100,7 +101,7 @@ public class OptionalDemo {
         log.info("Year is 2024 : {}", is2024);
 
         /** 9. Returning Value With get() */
-        Optional<String> found = Stream.of(getEmpty(), getBye(), getHello() )
+        Optional<String> found = Stream.of(getEmpty(), getBye(), getHello())
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .findFirst();

@@ -1,6 +1,6 @@
-package com.example.demo.javafeatures.basic.collConversion;
+package com.example.demo.javafeatures.java8.collectionConversion;
 
-import com.example.demo.dummy.DummyEmployee;
+import com.example.demo.model.dummy.DummyEmployee;
 import com.example.demo.model.Employee;
 
 import java.util.ArrayList;

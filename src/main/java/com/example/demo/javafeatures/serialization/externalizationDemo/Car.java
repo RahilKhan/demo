@@ -22,6 +22,8 @@ public class Car  implements Externalizable{
     private int mnfYear;
     private int hp;
     private String model;
+    public static Car test = new Car(0, "Test", 0000, 000, "Test model");
+    public static String str = "test";
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {

@@ -13,6 +13,10 @@ public class ExternExample {
     public static void main(String... args) {
         Car car = new Car(5, "Honda", 2023, 180, "Honda Civic");
         Car newCar = null;
+        Car nc = Car.test;
+        String str = Car.str;
+        System.out.println("str : " + str);
+        System.out.println("test car : " + nc);
 
         /* Serialize */
         try {

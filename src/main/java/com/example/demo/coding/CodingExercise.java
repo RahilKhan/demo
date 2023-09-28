@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import com.example.demo.dummy.DummyEmployee;
+import com.example.demo.model.dummy.DummyEmployee;
 import com.example.demo.model.Employee;
 
 /**

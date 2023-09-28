@@ -1,4 +1,4 @@
-package com.example.demo.javafeatures.concurrency.threads.blockingqueue;
+package com.example.demo.javafeatures.concurrency.threads.producerConsumer.blockingqueue;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;

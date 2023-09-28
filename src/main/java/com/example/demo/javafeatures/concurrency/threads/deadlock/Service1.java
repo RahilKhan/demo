@@ -1,4 +1,7 @@
-package com.example.demo.concurrency.threads.deadlock;
+package com.example.demo.javafeatures.concurrency.threads.deadlock;
+
+import com.example.demo.concurrency.threads.deadlock.RsrcA;
+import com.example.demo.concurrency.threads.deadlock.RsrcB;
 
 public class Service1 implements Runnable {
 

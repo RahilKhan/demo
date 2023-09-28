@@ -1,43 +1,55 @@
-package com.example.demo.javafeatures.java8;
+package com.example.demo.javafeatures.sorting;
 
-import com.example.demo.dummy.DummyEmployee;
+import com.example.demo.model.dummy.DummyEmployee;
 import com.example.demo.model.Empl;
 import com.example.demo.model.Employee;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 
 /**
  * Sorting:
  * #1. List sorting -> list.sort(...)
- * empList.sort(employeeNameComparator)
- * employeeList.sort(Comparator.comparing(Employee::getName));
- * employeeList.sort(Comparator.comparing(Employee::getName).reversed());
+ *      empList.sort(employeeNameComparator)
+ *      employeeList.sort(Comparator.comparing(Employee::getName));
+ *      employeeList.sort(Comparator.comparing(Employee::getName).reversed());
  * <p>
  * #2  Collection sorting -> Collection.sort(...)
- * e.g Collection.sort(<list/array>, customComparator)
- * Collections.sort(employeeList, Comparator.comparing(Employee::getName));
- * Collections.sort(employeeList, Comparator.comparing(Employee::getName).reversed());
+ *      e.g Collection.sort(<list/array>, customComparator)
+ *      Collections.sort(employeeList, Comparator.comparing(Employee::getName));
+ *      Collections.sort(employeeList, Comparator.comparing(Employee::getName).reversed());
  * <p>
  * #3  Array sorting -> Arrays.sort()...
- * e.g #1. Arrays.sort(empArr, employeeNameComparator);
- * Arrays.sort(empArr, employeeNameComparator.reversed());
- * #2. Arrays.sort(<primitive Array>);
- * Arrays.sort(intArr);
+ *      e.g #1. Arrays.sort(empArr, employeeNameComparator);
+ *      Arrays.sort(empArr, employeeNameComparator.reversed());
+ * #3.1. Arrays.sort(<primitive Array>);
+ *      Arrays.sort(intArr);
+ * #3.2 Integer[] reverse sort
+ *      Arrays.sort(numbers, Collections.reverseOrder());
+ *      Note: numbers -> Integer[] not primitive int[].
+ *           Integer[] numbers = {5, 1, 9, 3, 7};
+ *      Collections.reverseOrder() -> does not work on primitive int[]
  * #4 Stream ->
- * List<Employee> empList = (List<Employee>) list.stream().sorted(Comparator.comparing(Employee::getName))
- * .collect(Collectors.toList());
+ *      List<Employee> empList = (List<Employee>) list.stream()
+ *              .sorted(Comparator.comparing(Employee::getName))
+ *              .collect(Collectors.toList());
  */
+@Slf4j
 public class ComparingExample {
 
 
     public static void main(String... args) {
         System.out.println("\n------------sortingEmployeeArray------------");
-        sortingEmployeeArray();
+//        sortingEmployeeArray();
+
+        System.out.println("\n------------sortingPrimitiveArray------------");
+        sortingPrimitiveArray();
 
         System.out.println("\n------------sortingEmployeeArrayCustomSort------------");
         sortingEmployeeArrayCustomSort();
@@ -82,7 +94,25 @@ public class ComparingExample {
         System.out.println("\n------------sortingEmployeeArray - reversed()------------");
         Arrays.sort(empArr, employeeNameComparator.reversed());
         Stream.of(empArr).map(Employee::getName).forEach(System.out::println);
+        //Collections.sort(empArr, employeeNameComparator.reversed()); /*Applicable on list,set*/
     }
+
+    public static void sortingPrimitiveArray() {
+        System.out.println("\n------------sortingPrimitiveArray - sorted()------------");
+        int[] numbers = {5, 2, 9, 7, 0, -1, 3, 13, -11};
+        Arrays.sort(numbers);
+        IntStream.of(numbers).forEach(System.out::println);
+
+        /**Note
+         * Convert primitive int[] to class Integer[].
+         * Required to apply Collections.reverseOrder()
+         */
+        Integer[] intArray = IntStream.of(numbers).boxed().toArray(Integer[]::new);
+        Arrays.sort(intArray, Collections.reverseOrder());
+        Stream.of(intArray).forEach(System.out::println);
+
+    }
+
 
     public static void sortingEmployeeArrayCustomSort() {
         List<Employee> employees = DummyEmployee.getDummyEmployeeList();
